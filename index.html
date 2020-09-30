@@ -15,19 +15,41 @@
 <body>
     <div class="blogBanner"> My Blog</div>
 
+    <!-- --
     <div class="menu-container">
         <div class="vertical-menu">
             <a class="active">Archives</a>
-            <a href="#2020-09-29-p2" class="l">2020-09-29-p2</a>
-            <a href="#2020-09-29" class="l">2020-09-29</a>
+
             <!--
                 <a href="#YYYY-MM-DD" class="l">YYYY-MM-DD</a>
+            --
 
-            -->
-            
+            <a href="#2020-09-30" class="l">2020-09-30</a>
+            <a href="#2020-09-29-p2" class="l">2020-09-29-p2</a>
+            <a href="#2020-09-29" class="l">2020-09-29</a>
+            <!-- End Cap--
             <a class="e"></a>
         </div>
     </div>
+    -->
+
+    <!-- new drop down menu!-->
+    <div class="drpdwncon">
+        <button class="drpbtn"> Archives </button>
+        
+        <div class="drpdwncon-c">
+
+            <!--
+                <a href="#YYYY-MM-DD">YYYY-MM-DD</a>
+            -->
+
+            <a href="#2020-09-30" >2020-09-30</a>
+            <a href="#2020-09-29-p2" >2020-09-29-p2</a>
+            <a href="#2020-09-29" >2020-09-29</a>
+          
+        </div>
+      </div>
+      <!-- ------------------------------------ -->
     
 
     <div class="blog">
@@ -44,6 +66,9 @@
         </article>
 
         -->
+
+
+        <div w3-include-html="posts\2020-09-30.html"> new post?</div>
 
         <article>
             <a date="2020-09-29" id="2020-09-29-p2">2020-09-20-p2</a>
@@ -86,6 +111,9 @@
     </div>
 
     
+<script>
+    includeHTML();
+</script>
 
 </body>
 
