@@ -1,0 +1,88 @@
+<style>
+  /* the drop down button style properties*/
+  .dbtn{
+    background-color: #14281D;
+    color: white;
+    
+    font-size: 1.3em;;
+    text-indent: 0em;
+    height: 2.1em;
+    border: none;
+    cursor: pointer;
+    min-width: 100px;
+    border-top-left-radius: 0.8em;
+    border-top-right-radius: 0.8em;;
+    border-bottom-left-radius: 0.8em;
+    border-bottom-right-radius: 0.8em;
+    box-shadow: 5px 10px 8px #888888;
+  }
+  
+
+  /* we need a container so we can specify position on the page*/
+  .dc{
+    position: relative;
+    display: inline-block;
+    
+    
+  }
+  /* we need to specify the properties of the hidden content*/
+  .dc-c{
+    display: none;
+    position: absolute;
+    background-color: #52a376;
+    
+    
+    z-index: 1;
+    border-top-left-radius: 0.8em;
+    border-top-right-radius: 0.8em;;
+    border-bottom-left-radius: 0.8em;
+    border-bottom-right-radius: 0.8em;
+    box-shadow: 5px 10px 8px #888888;
+  }
+  /* the <a> inside the dc */
+    .dc-c a{
+      color: black;
+      
+      text-align: left;
+      font-family: 'Titillium Web', sans-serif;
+      background-color: #52a376;
+      color:#480355;
+      font-size: 0.8em;;
+      text-decoration: none;
+      text-indent: 25px;;
+      min-width: 100px;
+      display: block;
+
+      border-top-left-radius: 0.8em;
+      border-top-right-radius: 0.8em;;
+      border-bottom-left-radius: 0.8em;
+      border-bottom-right-radius: 0.8em;
+      
+    }
+    /* change on hover */
+    .dc-c a:hover {
+      background-color: #ccc;
+      
+    }
+    
+
+  /* now we want the content to show on hover */
+  .dc:hover .dc-c{
+    display: block;
+    
+    /* notice how we went from display:none to display: block*/
+  }
+</style>
+
+<div class="dc">
+  <button class="dbtn"> MENU </button>
+  
+  <div class="dc-c">
+    <a href="#">Link 1</a>
+    <a href="#">Link 2</a>
+    <a href="#">Link 3</a>
+    
+  </div>
+
+  
+</div>
