@@ -1,0 +1,434 @@
+var sketch =function(p){
+
+  //legs in motion?
+  p.bRLW = true;
+  p.fRLW = false;
+  p.bodyMovingR = false;
+  p.bodyMovingL = false;
+  p.bLLW = false;
+  p.fLLW = false;
+  //
+  p.nextPosition;
+  p.pos;
+  p.rad;
+
+  //leg length is 50,50 for now
+  p.lL;
+
+  //NOTE: forward = (1,0) vector in R2
+
+
+  //legs are relative to position = ( 0 , 0 );
+
+  //forward left shoulder
+  // forward rad, left rad
+  p.fLS;
+
+  //forward left LEG
+  p.fLL;
+
+  //forward right shoulder
+  //forward rad, right rad
+  p.fRS;
+
+  //forward right LEG
+  p.fRL;
+
+  //back left shoulder
+  //backward rad, left rad
+  p.bLS;
+
+  //backward left LEG
+  p.bLL;
+
+
+  //back right shoulder
+  //backward rad, right rad
+  p.bRS;
+
+  //backward right leg
+  p.bRL;
+
+  /* NOTE: 
+  *
+  *  forward  := positive Y
+  *  backward := negative Y 
+  *
+  *  left     := negative X
+  *  right    := positive X
+  *
+  */
+
+  p.fLD;
+  p.fRD;
+  p.bLD;
+  p.bRD;
+  //
+  p.canvas;
+  p.animate;
+
+
+
+  p.configureSetup =function(){
+    p.rectMode(p.CENTER);
+    p.textSize(32);
+
+    p.nextPosition = p.createVector(0, 60);
+
+    p.pos = p.createVector(150, 300);
+    p.rad = 25;
+    p.lL = p.createVector(p.rad, p.rad);
+
+    //direction vectors
+    p.fLD = p.createVector(-1, -1);
+    p.fRD = p.createVector(1, -1);
+    p.bLD = p.createVector(-1, 1);
+    p.bRD = p.createVector(1, 1);
+
+
+    //NOTE: forward = (0,1) vector in R2
+
+
+    //legs are relative to position = ( 0 , 0 );
+
+    /*-------------------------------------------*/
+    //forward left shoulder
+    // forward rad, left rad
+    p.fLS = p5.Vector.mult(p.fLD, p.rad);
+    p.fLS = p5.Vector.add(p.fLS, p.pos);
+    //fLL
+    p.fLL = p5.Vector.add(
+      p.fLS,
+      p5.Vector.mult(p.fLD, p.lL)
+    );
+    /*-------------------------------------------*/
+
+    /*-------------------------------------------*/
+    //forward right shoulder
+    //forward rad, right rad
+    p.fRS = p5.Vector.mult(p.fRD, p.rad);
+    p.fRS = p5.Vector.add(p.fRS, p.pos);
+    //fRL
+    p.fRL = p5.Vector.add(
+      p.fRS,
+      p5.Vector.mult(p.fRD, p.lL)
+    );
+    /*-------------------------------------------*/
+
+    /*-------------------------------------------*/
+    //back left shoulder
+    //backward rad, left rad
+    p.bLS = p5.Vector.mult(p.bLD, p.rad);
+    p.bLS = p5.Vector.add(p.bLS, p.pos);
+    //bLL
+    p.bLL = p5.Vector.add(
+      p.bLS,
+      p5.Vector.mult(p.bLD, p.lL)
+    );
+    /*-------------------------------------------*/
+
+    /*-------------------------------------------*/
+    //back right shoulder
+    //backward rad, right rad
+    p.bRS = p5.Vector.mult(p.bRD, p.rad);
+    p.bRS = p5.Vector.add(p.bRS, p.pos);
+    //bRL
+    p.bRL = p5.Vector.add(
+      p.bRS,
+      p5.Vector.mult(p.bRD, p.lL)
+    );
+    /*-------------------------------------------*/
+    
+    //start off screen
+    p.pos.y = p.height +10;
+  };
+
+  p.onLoadFN = function(){
+    
+    p.canvas.parent('#walking-robot-canvas');
+    console.log("onALoad ran");
+    //alert("BOOP");
+  };
+
+  p.setup = function() {
+    
+    p.canvas = p.createCanvas(500, 500);
+    
+    
+    p.configureSetup();
+
+
+    //createCanvas(400, 400);
+    
+    
+
+  }
+
+  p.draw = function() {
+    p.background(255);
+    /* we will need to recalculate each position for each frame
+    *
+    *
+    **/
+    //reCalculateLegPositions();
+    /**/
+
+
+
+    // Coord axes----------------------
+    p.drawCoordinateAxis();
+    //---------------------------------
+
+    //draw the bot
+    p.drawBot();
+
+    //pos.y--;
+
+    p.walk();
+
+  }
+
+  p.walk = function() {
+    if(p.pos.y > -100){
+      
+      
+      p.bRLStep();
+      p.fRLStep();
+      p.moveBodyR();
+      p.bLLStep();
+      p.fLLStep();
+      p.moveBodyL();
+  }
+  }
+  p.bRLStep=function() {
+    
+    if (p.bRLW == true) {
+      //console.log("back Right Leg Stepping...");
+      if (p.bRL.y > p.pos.y) {
+        p.bRL.y--;
+      } else {
+        p.bRLW = false;
+        p.fRLW = true;
+      }
+    }
+    
+  }
+
+  p.fRLStep=function() {
+    
+    if (p.fRLW == true) {
+    // console.log("front Right Leg Stepping...");
+      if (p.fRL.y > p.pos.y -3*p.rad ) {
+        p.fRL.y--;
+      } else {
+        p.fRLW = false;
+        p.bodyMovingR = true;
+      }
+    }
+    
+  }
+
+  p.moveBodyR=function() {
+  
+    if (p.bodyMovingR == true) {
+      //console.log("body Moving Forward");
+      if (p.pos.y > p.fRL.y + 2 * p.rad) {
+        p.pos.y--;
+
+        p.reCalculateShoulderPositions();
+      } else {
+        p.bodyMovingR = false;
+        p.bLLW = true;
+      }
+    }
+    
+    
+  }
+
+  p.bLLStep=function() {
+    
+    if (p.bLLW == true) {
+      //console.log("back Left Leg Stepping...");
+      if (p.bLL.y > p.pos.y) {
+        p.bLL.y--;
+      } else {
+        p.bLLW = false;
+        p.fLLW = true;
+      }
+    }
+    
+  }
+
+  p.fLLStep=function() {
+    
+    if (p.fLLW == true) {
+      //console.log("forward Left Leg Stepping...");
+      if ( p.fLL.y > p.pos.y -3*p.rad) {
+        p.fLL.y--;
+      } else {
+        p.fLLW = false;
+        p.bodyMovingL = true;
+      }
+    }
+    
+  }
+
+  p.moveBodyL=function() {
+    
+    if (p.bodyMovingL == true) {
+      //console.log("Moving Body Again...");
+      if (p.pos.y > p.bLL.y -3*p.rad) {
+        p.pos.y--;
+
+        p.reCalculateShoulderPositions();
+      } else {
+        p.bodyMovingL = false;
+        p.bRLW = true;
+      }
+      
+    }
+  }
+
+
+
+
+
+  // draw an arrow for a vector at a given base position
+  p.drawArrow=function(base, vec, myColor) {
+    p.push();
+    p.stroke(myColor);
+    p.strokeWeight(5);
+    p.fill(myColor);
+    p.translate(base.x, base.y);
+    p.line(0, 0, vec.x, vec.y);
+    p.rotate(vec.heading());
+    let arrowSize = 7;
+    p.translate(vec.mag() - arrowSize, 0);
+    p.triangle(0, arrowSize / 2, 0, -arrowSize / 2, arrowSize, 0);
+    p.pop();
+  }
+
+  p.reCalculateShoulderPositions=function() {
+    /*-------------------------------------------*/
+    //forward left shoulder
+    // forward rad, left rad
+    p.fLS = p5.Vector.mult(p.fLD, p.rad);
+    p.fLS = p5.Vector.add(p.fLS, p.pos);
+
+    /*-------------------------------------------*/
+    //forward right shoulder
+    //forward rad, right rad
+    p.fRS = p5.Vector.mult(p.fRD, p.rad);
+    p.fRS = p5.Vector.add(p.fRS, p.pos);
+
+    /*-------------------------------------------*/
+    //back left shoulder
+    //backward rad, left rad
+    p.bLS = p5.Vector.mult(p.bLD, p.rad);
+    p.bLS = p5.Vector.add(p.bLS, p.pos);
+
+    /*-------------------------------------------*/
+    //back right shoulder
+    //backward rad, right rad
+    p.bRS = p5.Vector.mult(p.bRD, p.rad);
+    p.bRS = p5.Vector.add(p.bRS, p.pos);
+
+
+  }
+
+
+  
+
+  p.drawCoordinateAxis=function() {
+    p.push();
+    p.translate(p.width / 2, p.height / 2);
+    // Y dir
+    p.drawArrow(
+      p.createVector(0, 0),
+      p.createVector(0, -p.height / 4),
+      p.color(255, 0, 0)
+    );
+    p.text(`y`, 0, -p.height / 4);
+    //
+
+    //X Dir
+    p.drawArrow(
+      p.createVector(0, 0),
+      p.createVector(p.width / 4, 0),
+      p.color(0, 0, 255)
+    );
+    p.text(`x`, p.width / 4, 0);
+    //
+    p.pop();
+  }
+
+  /**
+   *
+   *
+   */
+  p.drawBot=function() {
+    var s1, s2, s3, s4;
+    p.strokeWeight(5);
+    p.stroke(64);
+    p.fill(120);
+
+    //body
+    p.square(p.pos.x, p.pos.y, 2 * p.rad);
+
+    //legs
+    p.fill(0);
+
+    //fLL
+    p.strokeWeight(5);
+    p.stroke(64);
+    p.line(p.fLS.x, p.fLS.y, p.fLL.x, p.fLL.y);
+
+    p.strokeWeight(0);
+    p.stroke(0);
+    s1 = `${p.fLL.x},${p.fLL.y}`;
+    p.text(s1, p.fLL.x, p.fLL.y);
+
+    //fRL
+    p.strokeWeight(5);
+    p.stroke(64);
+    p.line(p.fRS.x, p.fRS.y, p.fRL.x, p.fRL.y);
+
+    p.strokeWeight(0);
+    p.stroke(0);
+    s2 = `${p.fRL.x},${p.fRL.y}`;
+    p.text(s2, p.fRL.x, p.fRL.y);
+
+    //bLL
+    p.strokeWeight(5);
+    p.stroke(64);
+    p.line(p.bLS.x, p.bLS.y, p.bLL.x, p.bLL.y);
+
+    p.strokeWeight(0);
+    p.stroke(0);
+    s3 = `${p.bLL.x},${p.bLL.y}`;
+    p.text(s3, p.bLL.x, p.bLL.y);
+
+    //bRL
+    p.strokeWeight(5);
+    p.stroke(64);
+    p.line(p.bRS.x, p.bRS.y, p.bRL.x, p.bRL.y);
+
+    p.strokeWeight(0);
+    p.stroke(0);
+    s4 = `${p.bRL.x},${p.bRL.y}`;
+    p.text(s4, p.bRL.x, p.bRL.y);
+
+    //shoulders get drawn OVERTOP of legs
+    p.fill(120);
+    p.circle(p.fLS.x, p.fLS.y, p.rad / 2);
+    p.circle(p.fRS.x, p.fRS.y, p.rad / 2);
+    p.circle(p.bLS.x, p.bLS.y, p.rad / 2);
+    p.circle(p.bRS.x, p.bRS.y, p.rad / 2);
+
+
+  }
+}
+
+
+
+var myp5 = new p5(sketch,"walking-robot-canvas");
