@@ -20,7 +20,7 @@ body{
     color:white;
     font-family: 'Titillium Web', sans-serif;
     z-index: 2;
-    height: 20%;
+    height: 10%;
 }
 
 /* Blog and its content*/ 
@@ -225,14 +225,9 @@ p{
   /* post filtering CSS */
 
   .filterDiv {
-    float: left;
-    background-color: #2196F3;
-    color: #ffffff;
-    width: 100px;
-    line-height: 100px;
-    text-align: center;
-    margin: 2px;
+    /* lol i oopsied here*/
     display: none;
+    color: #635f7c;
   }
   
   .show {
@@ -258,8 +253,16 @@ p{
   }
   
   .filterBtn.active {
-    background-color: #666;
+    background-color: #3e6d9d;
     color: white;
+    border-top-left-radius: 0.8em;
+    border-top-right-radius: 0.8em;;
+    border-bottom-left-radius: 0.8em;
+    border-bottom-right-radius: 0.8em;
+    margin: 2px;
+  }
+  .active:hover{
+    background-color: #9d3e4a;
   }
 
   #myFilterBtnContainer 
