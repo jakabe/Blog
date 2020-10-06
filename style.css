@@ -261,3 +261,12 @@ p{
     background-color: #666;
     color: white;
   }
+
+  #myFilterBtnContainer 
+  {
+    position: fixed;
+    top: 200px;
+    width: 120px;
+    
+    display: inline-block;
+  }
