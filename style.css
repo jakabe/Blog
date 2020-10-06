@@ -26,7 +26,7 @@ body{
 /* Blog and its content*/ 
 
 .blog{
-    top: 4em;
+    top: 60px;
     left:10em;
     z-index: 1;;
     background-size: cover;
@@ -166,7 +166,7 @@ p{
   /* we need a container so we can specify position on the page*/
   .drpdwncon{
     position: fixed;
-    top: 4em;
+    top: 60px;
     width: 120px;
     
     display: inline-block;
