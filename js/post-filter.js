@@ -3,6 +3,10 @@ filterSelection("all");
 
 function filterSelection(c)
 {
+    console.log("################################################");
+    console.log(`running post-filter.js,  filterSelection(${c}) js`);
+
+    console.log("################################################");
     var x, i;
     x= document.getElementsByClassName("filterDiv");
     if(c == "all")

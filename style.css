@@ -20,7 +20,7 @@ body{
     color:white;
     font-family: 'Titillium Web', sans-serif;
     z-index: 2;
-    height: 5%;
+    height: 20%;
 }
 
 /* Blog and its content*/ 
@@ -146,7 +146,7 @@ p{
 /* the drop down button style properties*/
 .drpbtn{
 
-    background-color: #14281D;
+    background-color:#1b5e39;
     color: white;
     
     font-size: 1.3em;;
@@ -160,13 +160,14 @@ p{
     border-bottom-left-radius: 0.8em;
     border-bottom-right-radius: 0.8em;
     box-shadow: 5px 10px 8px #302c2c;
+    margin-bottom: 5px;
   }
   
 
   /* we need a container so we can specify position on the page*/
   .drpdwncon{
     position: fixed;
-    top: 60px;
+    top: 100px;
     width: 120px;
     
     display: inline-block;
