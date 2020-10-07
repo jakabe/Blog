@@ -21,121 +21,223 @@
 
 
 <body>
-    <div class="blogBanner"> My Blog</div>
 
-    <!-- --
-    <div class="menu-container">
-        <div class="vertical-menu">
-            <a class="active">Archives</a>
-
-            <!--
-                <a href="#YYYY-MM-DD" class="l">YYYY-MM-DD</a>
-            --
-
-            <a href="#2020-09-30" class="l">2020-09-30</a>
-            <a href="#2020-09-29-p2" class="l">2020-09-29-p2</a>
-            <a href="#2020-09-29" class="l">2020-09-29</a>
-            <!-- End Cap--
-            <a class="e"></a>
-        </div>
-    </div>
-    -->
-
-    <!-- ------------------------------------ -->
-    <div id="myFilterBtnContainer">
-        <button class="filterBtn active" onclick="filterSelection('all')"> Show all</button>
-        <button class="filterBtn active" onclick="filterSelection('code')"> Code</button>
-    </div>
-    <!-- ------------------------------------ -->
-    
-    <!-- new drop down menu!-->
-    <div class="drpdwncon">
-        <button class="drpbtn"> Archives </button>
+    <!-- testing grid container -->
+    <style>
+        .item1 { 
+            grid-area: blogBanner;
+            background-color: blueviolet;
+        }
+        .item2 { grid-area: menu1; }
+        .item3 { grid-area: menu2; }
+        .item4 { grid-area: main; }
+        .item5 { grid-area: right; }
+        .item6 { grid-area: footer; }
         
-        <div class="drpdwncon-c">
-
-            <!--
-                <a href="#YYYY-MM-DD">YYYY-MM-DD</a>
-            -->
-            <a href="#2020-10-06"       >2020-10-06</a>
-            <a href="#2020-10-05"       >2020-10-05</a>
-            <a href="#2020-10-04"       >2020-10-04</a>
-            <a href="#2020-10-02"       >2020-10-02</a>
-            <a href="#2020-09-30"       >2020-09-30</a>
-            <a href="#2020-09-29-p2"    >2020-09-29-p2</a>
-            <a href="#2020-09-29"       >2020-09-29</a>
+        
+        .grid-container {
+          display: grid;
+          grid-template-areas:
+            'blogBanner blogBanner  blogBanner  blogBanner  blogBanner  blogBanner'
+            'menu1      main        main        main        main        right'
+            'menu2      main        main        main        main        right'
+            '.          main        main        main        main        right'
+            '.          main        main        main        main        right'
+            '.          main        main        main        main        right'
+            '.          main        main        main        main        right'
+            '.          main        main        main        main        right'
+            '.          main        main        main        main        right'
+            '.          main        main        main        main        right'
+            '.          main        main        main        main        right'
+            'footer     footer      footer      footer      footer      footer';
           
+          background-color: #2196F3;
+          padding: 0px;
+        }
+        
+        .grid-container > div {
+            background-color: #2196F3;
+        }
+        .grid-container > div.item1 {
+            /*
+            banner
+            */
+            height: 10vh;
+            background-color: rgb(72,3,85);
+            color:white;
+            font-family: 'Titillium Web', sans-serif;
+            text-align: left;
+            line-height: 6vh;
+            font-size: 9vh;
+            margin-bottom: 10px;;
+            padding: 1%;
+        }
+        .grid-container > div.item2 {
+            /*
+            Menu1
+            */
+            max-width: 180px;
+            max-height: 600px;;
+            height: fit-content;
+            width:fit-content;
+            margin:1%;
+            padding: 5%;
+        }
+        .grid-container > div.item3 {
+            /*
+            Menu2
+            */
+            max-width: 180px;
+            width:fit-content;
+            margin:1%;
+            padding: 5%;
+        }
+
+        .grid-container > div.item4 {
+            /*
+            MAIN
+            */
+            
+            width:fit-content;
+            
+            margin-left:4%;
+            padding-left: 5%;
+        }
+        </style>
+    <div class="grid-container">
+        <div class="item1"> My Blog </div>
+
+        <div class="item2"><!-- DROP DOWN ARCHIVE MENU-->
+            <!-- new drop down menu!-->
+            <div class="drpdwncon">
+                <button class="drpbtn"> Archives </button>
+                
+                <div class="drpdwncon-c">
+
+                    <!--
+                        <a href="#YYYY-MM-DD">YYYY-MM-DD</a>
+                    -->
+                    <a href="#2020-10-07-mb-1"       >2020-10-07-mb-1 "</a>
+                    <a href="#2020-10-07"       >2020-10-07</a>
+                    <a href="#2020-10-06"       >2020-10-06</a>
+                    <a href="#2020-10-05"       >2020-10-05</a>
+                    <a href="#2020-10-04"       >2020-10-04</a>
+                    <a href="#2020-10-02"       >2020-10-02</a>
+                    <a href="#2020-09-30"       >2020-09-30</a>
+                    <a href="#2020-09-29-p2"    >2020-09-29-p2 "</a>
+                    <a href="#2020-09-29"       >2020-09-29</a>
+                
+                </div>
+            </div>
+        <!-- -->
+
         </div>
+
+        <div class="item3"><!-- FILTER BUTTONS-->
+             <!-- Control buttons -->
+            <div id="myFilterBtnContainer" ><!-- myFilterBtnContainer -->
+                <button class="filterBtn active" onclick="filterSelection('all')"> Show All</button>
+                <button class="filterBtn" onclick="filterSelection('code')"> Code</button>
+                <button class="filterBtn" onclick="filterSelection('css')"> CSS</button>
+                <button class="filterBtn" onclick="filterSelection('mb')"> MicroBlog</button>
+                <button class="filterBtn" onclick="filterSelection('red')"> Red</button>
+                <button class="filterBtn" onclick="filterSelection('green')"> Green</button>
+                <button class="filterBtn" onclick="filterSelection('blue')"> Blue</button>
+            </div>
+            <!-- ------------------------------------ -->
+
+        </div>  
+
+        <div class="item4">
+            <div class="blog">
+                <!-- 
+                    Boiler Plate CopyPasta!
+        
+                <article>
+                    <a date="YYYY-MM-DD" id="YYYY-MM-DD">YYYY-MM-DD</a>
+                    <h1>First!</h1>
+                    <p>
+                        First Post to Blog... more to come hopefully.
+                    </p>
+                   <div class="sig">-JW</div>
+                </article>
+        
+                -->
+                <div w3-include-html="posts\2020-10-07\2020-10-07-mb-1.html"> new post?</div>
+
+                <div w3-include-html="posts\2020-10-07\2020-10-07.html"> new post?</div>
+
+                <div w3-include-html="posts\2020-10-06\2020-10-06.html"> new post?</div>
+        
+                <div w3-include-html="posts\2020-10-05\2020-10-05.html"> new post?</div>
+        
+                <div w3-include-html="posts\2020-10-04\2020-10-04.html"> new post?</div>
+        
+                <div w3-include-html="posts\2020-10-02\2020-10-02.html"> new post?</div>
+        
+                <div w3-include-html="posts\2020-09-30\2020-09-30.html"> new post?</div>
+        
+                <article class="l">
+                    <a date="2020-09-29" id="2020-09-29-p2">2020-09-29-p2</a>
+                    <h1>So Many To Dos</h1>
+                    <p>
+                        So I've got a lot of things on my to do list.  For about a month my top priority was building a better to do list.  The outcome was my Task Board which can be found <a href="https://jakabe.github.io/TaskBoard/">here</a>. Below You will see a snippet of my current Task Board as I see it.  Should anyone else choose to use this tool, it's worth noting that any lists and items you add will be saved to a JSON file locally. If you delete your cookies that list will be lost.  I know, I need to add an export button to prevent this exact thing.
+                    </p>
+                    <img src="img\2020-09-29-To-Do-Board.PNG" alt="Old To Dos" style="width: auto;">
+                        
+                    <p>
+                        I've been playing with the idea of adding a tab system to the top of the page for more project specific task planning.  Which brings me to my next point: The Blog - what comes next?
+                    </p>
+        
+                    <ul>
+                        <li><a href="https://www.w3schools.com/howto/howto_js_filter_elements.asp">I need to add tags and filters</a></li>
+                        <li><a href="https://stackoverflow.com/questions/32938168/using-innerhtml-property-to-display-content-of-another-html-file">Implement AJAX so I can keep blog posts as txt or md files in separate folder</a></li>
+                        <li><a href="https://www.w3schools.com/Css/css_dropdowns.asp">Make the archives a drop down menu</a></li>
+                        <li><a href="https://developers.google.com/web/fundamentals/codelabs/push-notifications/">Set up consensual push notifications</a></li>
+                        <li> Update the Task Board</li>
+                        
+                    </ul>
+                    <br>
+                   <div class="sig">-J</div>
+                </article>
+        
+                <article class="l">
+        
+                    <a date="2020-09-29" id="2020-09-29">2020-09-29</a>
+                    <h1>First!</h1>
+                    <p>
+                        First Post to Blog... more to come hopefully.
+                    </p>
+                   <div class="sig">-J</div>
+                </article>
+        
+                
+                
+        
+        
+            </div>
+        </div>
+
+        <div class="item5"></div>
+        <div class="item6"></div>
+        
       </div>
+     <!-- -->   
+    
+
+
+
+    
+    
+    
+
     
 
 
 
 
-    <div class="blog">
-        <!-- 
-            Boiler Plate CopyPasta!
 
-        <article>
-            <a date="YYYY-MM-DD" id="YYYY-MM-DD">YYYY-MM-DD</a>
-            <h1>First!</h1>
-            <p>
-                First Post to Blog... more to come hopefully.
-            </p>
-           <div class="sig">-JW</div>
-        </article>
-
-        -->
-
-        <div w3-include-html="posts\2020-10-06\2020-10-06.html"> new post?</div>
-
-        <div w3-include-html="posts\2020-10-05\2020-10-05.html"> new post?</div>
-
-        <div w3-include-html="posts\2020-10-04\2020-10-04.html"> new post?</div>
-
-        <div w3-include-html="posts\2020-10-02\2020-10-02.html"> new post?</div>
-
-        <div w3-include-html="posts\2020-09-30\2020-09-30.html"> new post?</div>
-
-        <article>
-            <a date="2020-09-29" id="2020-09-29-p2">2020-09-29-p2</a>
-            <h1>So Many To Dos</h1>
-            <p>
-                So I've got a lot of things on my to do list.  For about a month my top priority was building a better to do list.  The outcome was my Task Board which can be found <a href="https://jakabe.github.io/TaskBoard/">here</a>. Below You will see a snippet of my current Task Board as I see it.  Should anyone else choose to use this tool, it's worth noting that any lists and items you add will be saved to a JSON file locally. If you delete your cookies that list will be lost.  I know, I need to add an export button to prevent this exact thing.
-            </p>
-            <img src="img\2020-09-29-To-Do-Board.PNG" alt="Old To Dos" style="width: auto;">
-                
-            <p>
-                I've been playing with the idea of adding a tab system to the top of the page for more project specific task planning.  Which brings me to my next point: The Blog - what comes next?
-            </p>
-
-            <ul>
-                <li><a href="https://www.w3schools.com/howto/howto_js_filter_elements.asp">I need to add tags and filters</a></li>
-                <li><a href="https://stackoverflow.com/questions/32938168/using-innerhtml-property-to-display-content-of-another-html-file">Implement AJAX so I can keep blog posts as txt or md files in separate folder</a></li>
-                <li><a href="https://www.w3schools.com/Css/css_dropdowns.asp">Make the archives a drop down menu</a></li>
-                <li><a href="https://developers.google.com/web/fundamentals/codelabs/push-notifications/">Set up consensual push notifications</a></li>
-                <li> Update the Task Board</li>
-                
-            </ul>
-            <br>
-           <div class="sig">-J</div>
-        </article>
-
-        <article>
-
-            <a date="2020-09-29" id="2020-09-29">2020-09-29</a>
-            <h1>First!</h1>
-            <p>
-                First Post to Blog... more to come hopefully.
-            </p>
-           <div class="sig">-JW</div>
-        </article>
-
-        
-        
-
-
-    </div>
+    
 
     
 <script>

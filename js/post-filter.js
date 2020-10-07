@@ -1,21 +1,51 @@
-
-filterSelection("all");
+var debugBool = true;
+function debugConLog(s)
+{
+    if(debugBool == true)
+    {
+        //console.log(``);
+        //console.log(` /--------------------------------------------------------\\ `);
+        console.log(s);
+        //console.log(` \\--------------------------------------------------------/ `);
+        //console.log(``);
+    }
+}
 
 function filterSelection(c)
 {
-    console.log("################################################");
-    console.log(`running post-filter.js,  filterSelection(${c}) js`);
-
-    console.log("################################################");
+    
+    
+    debugConLog(` |   running post-filter.js,  filterSelection(${c}) js     | `);
+    
+    
     var x, i;
-    x= document.getElementsByClassName("filterDiv");
+    x = document.getElementsByClassName("filterDiv ");
+
+    
+    debugConLog(`   argument passed was (${c})`);
+    debugConLog(`   array of div elements with class="${c}" is ${x.length} long`);
+    for(var i = 0 ; i<x.length;i++)
+    {
+        debugConLog(x[i]);
+    }
+    
+
     if(c == "all")
     {
+        debugConLog(`   input was 'all' `);
         c="";
+        debugConLog(`       set c to "" `);
     }
+    //
+    debugConLog(`       length of x array is ${x.length}`);
+    //
     for(i = 0 ; i < x.length ; i++)
     {
+        debugConLog(`       removing show from...`);
+        debugConLog(x[i]);
+
         w3RemoveClass(x[i],"show");
+
         if( x[i].className.indexOf(c) > -1 )
         {
             w3AddClass(x[i], "show");
@@ -25,9 +55,38 @@ function filterSelection(c)
 
 function w3RemoveClass(element, name)
 {
+    debugConLog(`   w3RemoveClass called with (${element}),${name}`);
+    debugConLog(`   element name is ${element.name}`);
+
     var i, array_1, array_2;
+    //create arr 1
     array_1 = element.className.split(" ");
+    //=============================================================
+
+        /* DEBUGGING  */
+        //=========================================================
+        debugConLog(`       array_1 is ${array_1.length} long`);
+        debugConLog(`       array_1 contains: `);
+        for(var j = 0 ; j < array_1.length ; j++)
+        {
+            debugConLog(`           ${j}:${array_1[j]}`);
+        }
+        debugConLog(`       END`);
+    //=============================================================
+    // create arr2
     array_2 = name.split(" ");
+    //=============================================================
+    
+        /* DEBUGGING  */
+        //=========================================================
+        debugConLog(`       array_2 is ${array_2.length} long`);
+        debugConLog(`           array_2 contains: `);
+        for(var j = 0 ; j < array_2.length ; j++)
+        {
+            debugConLog(`           ${j}:${array_2[j]}`);
+        }
+        debugConLog(`       END`);
+    //=============================================================
     for( i=0 ; i< array_2.length ;i++)
     {
         while(array_1.indexOf(array_2[i])  > -1  )
@@ -40,6 +99,9 @@ function w3RemoveClass(element, name)
 
 function w3AddClass(element, name)
 {
+    //=============================================================
+    debugConLog(`w3AddClass called with (${element}),${name}`);
+    //=============================================================
     var i, array_1, array_2;
     array_1 = element.className.split(" ");
     array_2 = name.split(" ");
@@ -52,16 +114,38 @@ function w3AddClass(element, name)
     }
 }
 
-var filterBtnContainer = document.getElementById("myFilterBtnContainer");
-var filterBtns = filterBtnContainer.getElementsByClassName("filterBtn");
+// Add active class to the current control button (highlight it)
 
-for (var i = 0; i < filterBtns.length; i++)
+var filterBtnContainer = document.getElementById("myFilterBtnContainer");
+   
+    debugConLog(` | filterBtnContainer is ${filterBtnContainer}   `);
+    
+
+if(filterBtnContainer != null)
 {
-    filterBtns[i].addEventListener("click", 
-    function()
+    
+    debugConLog(` | filterBtnContainer is not null  | `);
+    
+
+    var filterBtns = filterBtnContainer.getElementsByClassName("filterBtn");
+
+    for (var i = 0; i < filterBtns.length; i++)
     {
-      var current = document.getElementsByClassName("active");
-      current[0].className = current[0].className.replace(" active", "");
-      this.className += " active";
-    });
+        filterBtns[i].addEventListener("click", 
+        function()
+        {
+        var current = document.getElementsByClassName("active");
+        current[0].className = current[0].className.replace(" active", "");
+        this.className += " active";
+        });
+    }
+
+ 
+}else {
+    
+    debugConLog(` | filterBtnContainer is null  | `);
+    
 }
+
+
+//filterSelection("all");
