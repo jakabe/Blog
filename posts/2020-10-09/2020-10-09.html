@@ -1,0 +1,40 @@
+<div class="filterDiv show taskboard js css code">
+    <article class="l">
+        <a class="date" date="2020-10-09" id="2020-10-09">2020-10-09</a>
+        <h1>Two Steps Forward...</h1>
+            
+        <p>  
+            Yesterday I tweaked the CSS code for the Task Board.
+              The lists are a bit prettier but they aren't perfect.
+              They are nice for right now. I used the chrome DevTools to modify a lot of the CSS code.
+              It's much faster than opening up the style.css file in VS-code, modifying the properties of an element, saving, and refreshing the browser.
+        </p>
+
+        <img src="posts\2020-10-09\2020-10-09-TaskBoard.PNG" alt="Updated Board">
+        <p>
+           Updating the javascript took most of my time.
+             The functions that 'draw' elements on the screen needed to know how to add a style property inline.
+             To do this I gave every new list added to the screen the tag style="top: 160; left: 0". 
+             In order to modify that attribute I use the elements listIndex tag to find its position in an array.
+             Each element in the <b>BOARD</b> array contains an object.  These are the lists you see drawn on the screen.
+             When you click and drag a list on the screen the document waits for you to release the mouse.  
+             Once it sees the mouse is no longer depressed it sets the objects's top and left properties to the new coordinates on the screen.
+             This way, when you refresh the page or come back to it the lists will be drawn in the same place.
+        </p>
+
+        <h2>Relative Lengths</h2>
+        <p>
+            Oh man did I goof up.  I started using relative lengths for the lists instead of absolute lengths
+            Originally the lists on the page were measured in pixels but I found that using relative lengths made them look more proportionate in a few test cases.
+            Unfortunately I didn't think to zoom in and out of the window, or adjust the browser for mobile viewing.
+            The result is sort of silly looking. 
+        </p>
+        <img src="posts\2020-10-09\2020-10-09-sillyTB.PNG" alt="It's so disproportionate">
+        <p>
+            As much as I enjoy the font style I think I'll have to use something else due to sizing.  
+            Even when I modify the font attributes of the google-font that I'm using, the font doesn't want to change size or position.
+            This is leading to some strange text overflow.
+        </p>
+        <div class="sig">-J</div>
+    </article>
+</div>
