@@ -1,7 +1,97 @@
-<div class="filterDiv show">
+<div class="filterDiv show css">
     <article class="l">
         <a class="date" date="2020-10-14" id="2020-10-14">2020-10-14</a>
         
+        <h1> A new style </h1>
+
+        <p>
+            My goal today was to change the Taskboard so that it had some new buttons.  
+            Unfortunately I didn't get to that.  
+            I did however review how cascading style sheets <i>cascade</i>.  
+            This process took longer than I'd like to admit but that does not mean it was without worth.  
+
+        </p>
+
+        <p>
+            For my own sake I'll summarize what I went over today.  
+            
+
+        </p> 
+
+        <p>
+            <h3> What is the Cascade?</h3>
+            The word cascade refers to the process which determines the properties of elements in an html file.  
+            Occasionally these properties come into conflict.  This only occurs when two properties have equal specificity.  
+            <h3> What is specificity in the context of the cascading style sheet? </h3>
+            Specificity is the calculated weight of a given property.  
+            Web-dev textbooks might define specificity as fallows:
+            <p>
+            <i>"Specificity is the process that the browser uses to decide which rule applies if there are multiple rules with different selectors".</i>
+            </p>
+            I am not a fan of this definition.
+            The weight assigned to a propertie's specificity is determined by the types of selectors in that property.  
+            <h3> What are selectors in the context of the cascading style sheet? </h3>
+            Selectors are key words that reference tags or attributes of an element in an html file.
+            <h3> How does the browser resolve conflict between element properties? </h3>
+            The browser resolves CSS conflicts by assessing three peices of information
+            <ul>
+                <li>Source Order</li>
+                <li>Specificity</li>
+                <li>Importance</li>
+            </ul>
+            Source order refers to the properties position on the cascading style sheet.  
+            Properties that come later are given priority.  
+
+            Clearly two properties cannot exist in the same position on the style sheet so the next criteria to be assessed is specificity.  
+            The table bellow gives the associated weights for some CSS selectors.  
+            <p></p>
+            <style>
+                table, th, td 
+                {
+                    border: 1px solid black;
+                }
+            </style>
+            <table >
+                <tr>
+                    <th> Selector </th>
+                    <th> Example </th>
+                    <th> Weight </th>
+                </tr>
+                <tr> 
+                    <th> Inline Styles </th>
+                    <th> Style="background-color: black;"</th>
+                    <th> 1000 </th>
+                </tr>
+                <tr> 
+                    <th> ID Selectors </th>
+                    <th> id="outer"</th>
+                    <th> 100 </th>
+                </tr>
+                <tr> 
+                    <th> Class Selectors </th>
+                    <th> class = "bright"</th>
+                    <th> 10 </th>
+                </tr>
+                <tr> 
+                    <th> Element Selectors </th>
+                    <th> div </th>
+                    <th> 1 </th>
+                </tr>
+            </table>
+            A nested paragraph on an html page would probably have a specifity that might look like...  
+            <b>html > body > div.grid-container > div.item4 > div.blog > div > div.filterDiv.show.css > article.l > table > tbody ... </b>
+            This would have a very high specificity.  Not that you'd ever define a property like that... right?  
+
+            <p>
+                Lastly there is something called <i>"Importance"</i> which is should never be abused.  
+                Yes, any css property will accept the <b>!Important</b> argument.  
+                This trumps all.  
+                It will also make debugging your CSS far more difficult than usual.
+            </p>
+            <p>
+                Hopefully I can make use of this in proper soon.  That To-Do never seems to shrink.
+            </p>
+        </p>
         <div class="sig">-J</div>
     </article>
 </div>
