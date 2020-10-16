@@ -4,7 +4,7 @@ body{
   left: 0px;
   padding: 0px;
   margin:0px;
-  background-color: slategray;
+  background-color: #161616; /* Pot Black */
 }
 
 /* Blog Banner */
@@ -59,7 +59,8 @@ body{
 
 
 article.l{
-  background-color: rgb(193,238,255);
+  background-color: #1e272c; /* Black Pearl */
+  color: white;
   padding: 20px;
   border-radius: 20px;
   border: 2px solid black;
@@ -77,13 +78,14 @@ text-align: center;
 article.s{
 position: relative;
 left: 15%;
-background-color: rgba(193, 238, 255, 0.541);
+background-color: #404858; /* Soft Steel*/
 padding: 5px;
 border-radius: 20px;
 
 margin:5px;
 width: 70%;
 font-size: small;
+color: white;
 
 
 }
