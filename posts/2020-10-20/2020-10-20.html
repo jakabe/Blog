@@ -1,0 +1,90 @@
+<link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/monoid" type="text/css"/>
+
+
+<div class="filterDiv show js gnomes">
+    <article class="l">
+        <!-- <style type="text/css">
+            
+            
+            div.cb{
+                display:block;
+                margin-top: 0px;
+                margin-bottom: 0px;
+                margin-left:0px;
+                padding:0px;
+                
+                background-color: #333333; 
+                color:#33FF33;
+                
+                font-family: 'MonoidRegular';
+                font-weight: normal;
+                font-style: normal;
+                font-size: x-small;
+                border-radius: 20px;
+            }
+            div.cb.tb
+            { 
+                
+                
+                padding-top: 0px;
+                padding-bottom: 0px;;
+                margin-top: 0px;
+                margin-bottom:  0px;
+                vertical-align: top;
+                line-height: 0px;
+                padding-left: 30px; 
+            }
+        </style> -->
+
+        <a class="date" date="2020-10-20" id="2020-10-20">2020-10-20</a>
+        
+        <h1> String Manipulation and Gnomes </h1>
+        <p>
+            Today I wanted to spend some time doing some creative coding.  I updated the <a href="https://jakabe.github.io/GnomeGenerator/">Gnome Generator</a> with new names and titles.  
+            Rather than manually type all the names I decided to copy-paste them from a wikipedia page.  
+            The content took the form of comma separated names.  
+            Unfortunately this does not immediately lend itself to being placed in an array.  
+            So todays FUNction was to slap together something that can read a string of comma separated values and add them individually to an array.  
+        </p>
+
+        <p>
+            
+        </p>
+        
+        <h3>Example</h3>
+
+        <div class = "cb">
+                /*********************************
+            <br>*  Reads strings of 
+            <br>*  comma separated
+            <br>*  values and adds
+            <br>*  each to an array
+            <br>*  @param n1
+            <br>**********************************
+            <br>function addToFirstNameList(n1)
+            <br>{
+            <br> <div class="cb tb">var nl = n1.length;</div>
+            <br> <div class="cb tb">for( var i = 0 ; i < nl ; i++)</div>
+            <br> <div class="cb tb">{</div>
+                
+            <br> <div class="cb tb" style=" padding-left: 60px; ">var tempName = n1.slice(0,n1.indexOf(','));</div>
+            <br> <div class="cb tb" style=" padding-left: 60px; ">n1 = n1.replace(tempName+', ', "");</div>
+            <br> <div class="cb tb" style=" padding-left: 60px; ">if(n1 == tempName || n1 == "" )</div>
+            <br> <div class="cb tb" style=" padding-left: 60px; ">{</div>
+            <br> <div class="cb tb" style=" padding-left: 80px; "> break;</div>
+            <br> <div class="cb tb" style=" padding-left: 60px; ">}</div>
+            <br> <div class="cb tb" style=" padding-left: 60px; ">first_Name_Array.push(tempName);</div>
+            
+            <br> <div class="cb tb">}</div>
+            }
+            
+        </div>
+       
+        <p>
+            I'll come back to this when I can think of a cleaner method.
+        </p>
+
+        
+        <div class="sig">-J</div>
+    </article>
+</div>

@@ -269,3 +269,57 @@ p{
   
   display: inline-block;
 }
+
+
+/* code block styling */
+
+div.cb{
+  display:block;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left:0px;
+  padding:0px;
+  
+  background-color: #333333; 
+  color:#33FF33;
+  
+  font-family: 'MonoidRegular';
+  font-weight: normal;
+  font-style: normal;
+  font-size: x-small;
+  border-radius: 20px;
+}
+div.cb.tb
+{ 
+  
+  
+  padding-top: 0px;
+  padding-bottom: 0px;;
+  margin-top: 0px;
+  margin-bottom:  0px;
+  vertical-align: top;
+  line-height: 0px;
+  padding-left: 30px; 
+}
+
+/* Link Colors */
+
+/* unvisited link */
+a:link {
+  color: blue;
+}
+
+/* visited link */
+a:visited {
+  color: yellow;
+}
+
+/* mouse over link */
+a:hover {
+  color: hotpink;
+}
+
+/* selected link */
+a:active {
+  color: blue;
+}
