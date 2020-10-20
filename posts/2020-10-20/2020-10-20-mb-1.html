@@ -1,0 +1,77 @@
+
+
+<div class="filterDiv show mb" >
+   
+
+    <article class="s" >
+        <a class="date" date="2020-10-20" id="2020-10-20-mb-1">2020-10-20</a>
+        
+        <script type="text/p5" data-autoplay>
+let ball;
+
+function setup()
+{
+    createCanvas(100,100);
+    ball = new Ball( width /2 , height /2, 5);
+}
+
+function draw()
+{
+    background(0);
+    ball.show();
+    ball.move();
+}
+
+class Ball
+{
+    constructor( x , y , r )
+    {
+        this.x = x;
+        this.y = y;
+        this.r = r;
+        this.d = 2*r;
+        this.xVelocity = -3.14;
+        this.yVelocity =  2.16;
+    }
+
+    show()
+    {
+        color( 255 );
+        ellipse ( this.x , this.y , this.d , this.d );
+    }
+
+    move()
+    {
+        this.x += this.xVelocity;
+        this.y += this.yVelocity;
+        this.bounce();
+    }
+
+    bounce()
+    {
+        if( this.x - this.r <= 0 || this.x + this.r >= width)
+        {
+            this.xVelocity *= -1;
+        }
+
+        if( this.y - this.r <=0 || this.y + this.r >= height )
+        {
+            this.yVelocity *= -1;
+        }
+    }
+}
+
+            </script>
+        
+        <i>Weeeeeeee!</i>
+        <div class="sig">-J</div>
+    </article>
+</div>
+
+
+
+
+
+
+
+
