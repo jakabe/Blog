@@ -129,7 +129,7 @@ p{
 
 /* the drop down button style properties*/
 .drpbtn{
-
+  position: relative;
   background-color:#1b5e39;
   color: white;
   
@@ -145,7 +145,7 @@ p{
   border-top-right-radius: 0.8em;;
   border-bottom-left-radius: 0.8em;
   border-bottom-right-radius: 0.8em;
-  
+  left: 20px;
   margin-bottom: 5px;
 }
 
@@ -266,7 +266,7 @@ p{
   position: relative;
   top: 50%;
   max-width: 120px;
-  
+  left: 20px;
   display: inline-block;
 }
 

@@ -1,4 +1,4 @@
-var debugBool = true;
+var debugBool = false;
 function debugConLog(s)
 {
     if(debugBool == true)
