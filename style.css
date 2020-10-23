@@ -278,7 +278,7 @@ div.cb{
   margin-top: 0px;
   margin-bottom: 0px;
   margin-left:0px;
-  padding:0px;
+  
   
   background-color: #333333; 
   color:#33FF33;
@@ -288,6 +288,8 @@ div.cb{
   font-style: normal;
   font-size: x-small;
   border-radius: 20px;
+  padding-left: 20px;
+
 }
 div.cb.tb
 { 
@@ -306,7 +308,7 @@ div.cb.tb
 
 /* unvisited link */
 a:link {
-  color: blue;
+  color:pink;
 }
 
 /* visited link */
@@ -321,5 +323,5 @@ a:hover {
 
 /* selected link */
 a:active {
-  color: blue;
+  color: cyan;
 }

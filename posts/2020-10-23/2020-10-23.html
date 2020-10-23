@@ -1,0 +1,184 @@
+<!-- <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/monoid" type="text/css"/> -->
+
+
+<div class="filterDiv  js code theory">
+    <article class="l">
+
+        <a class="date" date="2020-10-23" id="2020-10-23">2020-10-23</a>
+        
+        <h1> Algorithm Analysis:  <i>"Just take the highest power..."</i> </h1>
+        <p>
+            When I was first introduced to <i>Big-O</i> notation I was given the explanation that it simply meant you "rounded" the expression.  
+
+            Lets look at some real world examples and then some code.
+        </p>
+
+        <h3> Example: "Time to buy a watch"</h3>
+        
+        <p>
+            Let us say that I don't know what time of day it is but I know my friend is wearing a watch.  
+        In order to get the time I simply ask my friend what time it is.  
+        My friend isn't particularly funny so he tells me the time and the scenario is resolved.  
+        This took a constant number of operations to resolve a solution so we say it had O(1) complexity.
+        </p>
+
+        <h3> Example: "Handing out tests" </h3>
+        <p> 
+            In university I was a paid lab assistant so I had to hand out midterms and then grade them.  
+            For this example let us say that on the day that students are scheduled to write their midterm I am to place one midterm test on each occupied desk.  
+            In order to complete this task I will need to go to each of n occupied desks and place one midterm on them.  
+            This will take a variable number of operations as not all desks are occupied.  Thus we say this has O(n) complexity.  
+        </p>
+
+        <h3> Example: "Server Chassis is locked"</h3>
+        <p>
+            At work there is a server chassis that has a key... somewhere.  
+            There are a number of lock boxes containing unique keys in the facility.  
+            Sometimes keys are mistakenly swapped by staff.
+            One of them has the server chassis key.  
+            So if I need to open the chassis I need to go to each key box and search it for the key I need.  
+            So for n keys with n boxes to search, I will have to perform at worst n<sup>2</sup> operations.  
+            We say that this has O(n<sup>2</sup>) complexity.  
+        </p>
+
+        <h3> Example: Adding names from a string to a list</h3>
+        <p>
+            In my post <i><a style = "color: cyan" href="#2020-10-20"       >String Manipulation and Gnomes</a></i> I said I'd return to that particular function. Let's do that now.
+        </p>
+        <div class = "cb">
+            
+            <br>function addToFirstNameList(n1)
+            <br>{
+            <br> <div class="cb tb">var nl = n1.length;</div>
+            <br> <div class="cb tb">...</div>
+            <!-- <br> <div class="cb tb">for( var i = 0 ; i < nl ; i++){...}</div> -->
+            <br> <div class="cb tb"></div>
+            }
+            <p>//fin</p>
+        </div>
+
+        <p>
+            Here we can see that the nl variable has been initialized <u>AND</u> assigned a value.  
+            This function only requires two steps so far.  At this point we may say that it has O(1). 
+        </p>
+
+        <div class = "cb">
+            
+            <br>function addToFirstNameList(n1)
+            <br>{
+            <br> <div class="cb tb">var nl = n1.length;  // O(1) with two operations</div> 
+            <br> <div class="cb tb">for( var i = 0 ; i < nl ; i++){...}</div>
+            <!-- <br> <div class="cb tb"></div> -->
+            <br> <div class="cb tb"></div>}
+            <p>//fin</p>
+        </div>
+        
+        
+        <p>
+            Now that we have the for loop we can see that there are a number of operations that will occur only once followed by some operations that will repeat.  
+            All for loops require a variable to act as a sort of index.  
+            In this case we have initialized i and assigned it a value.  
+            That is two more operations.  
+            For every recurrence of the loop we will check the value of i against nl.  
+            So long as i is less than nl in this loop we increment it by 1.  
+            So far we have added four operations that will occur once and two operations for every time i is less than nl.  
+            We may express this as <b>f(n)=4+2n</b>.
+        </p>
+
+        <div class = "cb">
+            
+            <br>function addToFirstNameList(n1)
+            <br>{
+            <br> <div class="cb tb">var nl = n1.length;  // O(1) with two operations</div> 
+            <br> <div class="cb tb">for( var i = 0 ; i < nl ; i++) // O(1) followed by O(n)</div>
+            <br> <div class="cb tb">{</div>
+                
+                <br> <div class="cb tb" style=" padding-left: 60px; ">var tempName = n1.slice(0,n1.indexOf(','));</div>
+                <br> <div class="cb tb" style=" padding-left: 60px; ">n1 = n1.replace(tempName+', ', "");</div>
+                <!-- <br> <div class="cb tb" style=" padding-left: 60px; ">if(n1 == tempName || n1 == "" )</div>
+                <br> <div class="cb tb" style=" padding-left: 60px; ">{</div>
+                <br> <div class="cb tb" style=" padding-left: 80px; "> break;</div>
+                <br> <div class="cb tb" style=" padding-left: 60px; ">}</div> -->
+                <br> <div class="cb tb" style=" padding-left: 60px; ">...</div>
+                <br> <div class="cb tb" style=" padding-left: 60px; ">first_Name_Array.push(tempName);</div>
+                
+                <br> <div class="cb tb">}</div>
+            <br> <div class="cb tb"></div>}
+            <p>//fin</p>
+        </div>
+
+        <p>
+            I'll be honest, I'm not sure how many operations go into initializing and assigning value to tempName, but if I had to guess it looks something like 4 pluse maybe all the checks it has to do to find the index of ',' .
+            We are going to need more variables.  
+            We already know that the string n1 is nl characters long so we can keep that for descriptive purposes.  
+            In the case that there is only one comma and it is at the end of the n1 string we may conclude that there would be nl operations occuring.  
+            So lets say that this line alone has O(n) complexity where n is nl.
+        </p>
+
+        <p>
+            The next line down performs a similar operation so we may say that it is also O(n) where n will be the number of occurences of the substring tempName + ', ' .
+            The final line we see a push operation occuring so it only happens once for each loop. 
+
+        </p>
+
+
+       <div class = "cb">
+            
+            <br>function addToFirstNameList(n1)
+            <br>{
+            <br> <div class="cb tb">var nl = n1.length;  // O(1) with two operations</div> 
+            <br> <div class="cb tb">for( var i = 0 ; i < nl ; i++) // O(1) followed by O(n)</div>
+            <br> <div class="cb tb">{</div>
+                
+                <br> <div class="cb tb" style=" padding-left: 60px; ">var tempName = n1.slice(0,n1.indexOf(',')); //O(n)</div>
+                <br> <div class="cb tb" style=" padding-left: 60px; ">n1 = n1.replace(tempName+', ', ""); //O(n)</div>
+                <br> <div class="cb tb"></div>
+                <br> <div class="cb tb" style=" padding-left: 60px; ">if(n1 == tempName || n1 == "" ) //</div>
+                <br> <div class="cb tb" style=" padding-left: 60px; ">{</div>
+                <br> <div class="cb tb" style=" padding-left: 80px; "> break;</div>
+                <br> <div class="cb tb" style=" padding-left: 60px; ">}</div>
+                <br> <div class="cb tb"></div>
+                <br> <div class="cb tb" style=" padding-left: 60px; ">first_Name_Array.push(tempName);</div>
+                
+                <br> <div class="cb tb">}</div>
+            <br> <div class="cb tb"></div>}
+            <p>//fin</p>
+        </div>
+
+        <p>
+            Here we see a lowly if statement chisling out a meager existence.   
+            It performs two operations in the argument and a third in the clause.  
+            These all occur some n times so we can say that this too has O(n) complexity.
+        </p>
+       
+        <div class = "cb">
+            
+            <br>function addToFirstNameList(n1)
+            <br>{
+            <br> <div class="cb tb">var nl = n1.length;  // O(1) with two operations</div> 
+            <br> <div class="cb tb">for( var i = 0 ; i < nl ; i++) // O(1) followed by O(n)</div>
+            <br> <div class="cb tb">{</div>
+                
+                <br> <div class="cb tb" style=" padding-left: 60px; ">var tempName = n1.slice(0,n1.indexOf(',')); //O(n)</div>
+                <br> <div class="cb tb" style=" padding-left: 60px; ">n1 = n1.replace(tempName+', ', ""); //O(n)</div>
+                <br> <div class="cb tb"></div>
+                <br> <div class="cb tb" style=" padding-left: 60px; ">if(n1 == tempName || n1 == "" ) //O(1) within an O(n) </div>
+                <br> <div class="cb tb" style=" padding-left: 60px; ">{</div>
+                <br> <div class="cb tb" style=" padding-left: 80px; "> break;</div>
+                <br> <div class="cb tb" style=" padding-left: 60px; ">}</div>
+                <br> <div class="cb tb"></div>
+                <br> <div class="cb tb" style=" padding-left: 60px; ">first_Name_Array.push(tempName);</div>
+                
+                <br> <div class="cb tb">}</div>
+            <br> <div class="cb tb"></div>}
+            <p>//fin</p>
+        </div>
+        
+        <p>
+            From this analysis we can conclude that this function has O(n)*O(n) = O(n<sup>2</sup>) complexity.  
+            I think I'll continue this topic in a future post where I talk about the actual definition of Big-O notation.
+        </p>
+        
+        <div class="sig">-J</div>
+    </article>
+</div>
