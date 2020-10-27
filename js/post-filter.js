@@ -21,7 +21,7 @@ function filterSelection(c)
     var x, i;
     x = document.getElementsByClassName("filterDiv ");
     debugConLog(` |     document.getElementsByClassName("filterDiv "); has been executed     `);
-    console.log(x);
+    //console.log(x);
     debugConLog(` |     argument passed was (${c})`);
     debugConLog(` |     array of div elements with class="${c}" is ${x.length} long`);
     for(var i = 0 ; i<x.length;i++)
@@ -53,7 +53,7 @@ function filterSelection(c)
     }
 
 
-    changeP5BackgroundColor();
+   changeP5BackgroundColor();
 }
 
 function w3RemoveClass(element, name)
@@ -161,21 +161,22 @@ if(filterBtnContainer != null)
 function changeP5BackgroundColor(){
     console.log("|      changeP5BackgroundColor()  |");
     var x;
+    console.log(" x step ");
     x= document.getElementsByTagName("iframe");
     console.log("X is ... ");
     console.log(x);
     console.log(x.length);
-    
-    for(var i = 0 ; i < x.length ; i++){
-        console.log(" X["+i+"] is...");
-        console.log(x[i]);
+    //var xl = x.length;
+    // for(var i = 0 ; i < x.length ; i++){
+    //     console.log(" X["+i+"] is...");
+    //     console.log(x[i]);
         
-        x[i].style.backgroundColor = '#000000';
-        var y= x[i].getElementsByTagName("body");
-        console.log(" Y is... ");
-        console.log(y);
-        y.style.backgroundColor ='#000000';
-    }
+    //     x[i].style.backgroundColor = '#000000';
+    //     var y= x[i].getElementsByTagName("body");
+    //     console.log(" Y is... ");
+    //     console.log(y);
+    //     y.style.backgroundColor ='#000000';
+    // }
 
     console.log("|      changeP5BackgroundColor()  |");
 }
