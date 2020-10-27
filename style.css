@@ -79,13 +79,13 @@ text-align: center;
 
 article.s{
 position: relative;
-left: 15%;
+left: 10%;
 background-color: #34383c; 
 padding: 5px;
 border-radius: 20px;
 
 margin:5px;
-width: 70%;
+width: 80%;
 font-size: small;
 color: #c5c8cc;
 
@@ -102,7 +102,7 @@ text-align: center;
 article.s > a.date {
 text-indent: 0px;
 text-align-last: auto;
-color:#34383c ; 
+color:#c5c8cc ; 
 opacity: 0.5;
 }
 
