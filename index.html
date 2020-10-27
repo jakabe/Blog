@@ -10,6 +10,9 @@
 
     <script src="js/post-filter.js"></script>
 
+    <script src="js/change-p5-color.js"></script>
+
+
     <meta charset = "utf-8">
     <link rel="stylesheet" href="style.css">
 
@@ -146,7 +149,8 @@
        <style>
         .item1 { 
             grid-area: blogBanner;
-            background-color: blueviolet;
+            /*background-color: blueviolet; */
+            
         }
         .item2 { grid-area: menu1; }
         .item3 { grid-area: menu2; }
@@ -183,7 +187,8 @@
             banner
             */
             height: 10vh;
-            background-color: rgb(72,3,85);
+            /* background-color: rgb(72,3,85); */
+            background-color: #2b5895;
             color:white;
             font-family: 'Titillium Web', sans-serif;
             text-align: left;
@@ -237,6 +242,7 @@
                     <!--
                         <a href="#YYYY-MM-DD">YYYY-MM-DD</a>
                     -->
+                    <a href="#2020-10-26"       >2020-10-26</a>
                     <a href="#2020-10-23"       >2020-10-23</a>
                     <a href="#2020-10-20"       >2020-10-20</a>
                     <a href="#2020-10-16"       >2020-10-16</a>
@@ -277,6 +283,7 @@
                 <button class="filterBtn" onclick="filterSelection('blue')"> Blue</button>
                 <button class="filterBtn" onclick="filterSelection('meat')"> Meat</button>
                 <button class="filterBtn" onclick="filterSelection('theory')"> Theory</button>
+                <button class="filterBtn" onclick="filterSelection('java')"> Java</button>
             </div>
             <!-- ------------------------------------ -->
 
@@ -297,6 +304,9 @@
                 </article>
         
                 -->
+
+                <!-- <div w3-include-html="posts\2020-10-26\2020-10-26.html"> new post?</div> -->
+
                 <div w3-include-html="posts\2020-10-23\2020-10-23-mb-1.html"> new post?</div>
 
                 <div w3-include-html="posts\2020-10-23\2020-10-23.html"> new post?</div>
@@ -394,6 +404,10 @@
 
     <script>
         includeHTML();
+    </script>
+
+    <script>
+        //changeP5BackgroundColor();
     </script>
 </body>
 

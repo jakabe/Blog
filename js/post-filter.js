@@ -13,17 +13,17 @@ function debugConLog(s)
 
 function filterSelection(c)
 {
+    debugConLog("[filterSelection]");
     
-    
-    debugConLog(` |   running post-filter.js,  filterSelection(${c}) js     | `);
+    debugConLog(` |     running post-filter.js,  filterSelection(${c}) js      `);
     
     
     var x, i;
     x = document.getElementsByClassName("filterDiv ");
-
-    
-    debugConLog(`   argument passed was (${c})`);
-    debugConLog(`   array of div elements with class="${c}" is ${x.length} long`);
+    debugConLog(` |     document.getElementsByClassName("filterDiv "); has been executed     `);
+    console.log(x);
+    debugConLog(` |     argument passed was (${c})`);
+    debugConLog(` |     array of div elements with class="${c}" is ${x.length} long`);
     for(var i = 0 ; i<x.length;i++)
     {
         debugConLog(x[i]);
@@ -32,9 +32,9 @@ function filterSelection(c)
 
     if(c == "all")
     {
-        debugConLog(`   input was 'all' `);
+    debugConLog(` |     input was 'all' `);
         c="";
-        debugConLog(`       set c to "" `);
+    debugConLog(` |     set c to "" `);
     }
     //
     debugConLog(`       length of x array is ${x.length}`);
@@ -51,11 +51,17 @@ function filterSelection(c)
             w3AddClass(x[i], "show");
         }
     }
+
+
+    changeP5BackgroundColor();
 }
 
 function w3RemoveClass(element, name)
 {
+    debugConLog('[w3RemoveClass]');
+
     debugConLog(`   w3RemoveClass called with (${element}),${name}`);
+    
     debugConLog(`   element name is ${element.name}`);
 
     var i, array_1, array_2;
@@ -99,6 +105,7 @@ function w3RemoveClass(element, name)
 
 function w3AddClass(element, name)
 {
+    debugConLog("[w3AddClass]");
     //=============================================================
     debugConLog(`w3AddClass called with (${element}),${name}`);
     //=============================================================
@@ -149,3 +156,26 @@ if(filterBtnContainer != null)
 
 
 //filterSelection("all");
+
+
+function changeP5BackgroundColor(){
+    console.log("|      changeP5BackgroundColor()  |");
+    var x;
+    x= document.getElementsByTagName("iframe");
+    console.log("X is ... ");
+    console.log(x);
+    console.log(x.length);
+    
+    for(var i = 0 ; i < x.length ; i++){
+        console.log(" X["+i+"] is...");
+        console.log(x[i]);
+        
+        x[i].style.backgroundColor = '#000000';
+        var y= x[i].getElementsByTagName("body");
+        console.log(" Y is... ");
+        console.log(y);
+        y.style.backgroundColor ='#000000';
+    }
+
+    console.log("|      changeP5BackgroundColor()  |");
+}
