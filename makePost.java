@@ -201,49 +201,7 @@ public class makePost {
    }
 
 
-   /** TEST METHOD
-    * 
-    */
-   public static void getFolderNameTESTMethod(){
-      String folderNameArray[] = new String[] { 
-         "Toyota", "Mercedes", "BMW", "Volkswagen", "Skoda", 
-         "Apple",  "Banana", "Carrot", "Dill", "EggPlant",
-         "Abe", "Ben", "Carl", "Dan", "Earl", 
-         "Folder_0","Folder_1","Folder_2","Folder_3","Folder_4",
-         "newFolder_0","newFolder_1","newFolder_2","newFolder_3","newFolder_4",
-         };
-
-      
-         // create a new ArrayList 
-         List<String> arrlist = new ArrayList<>(); 
-         // Add the new elements
-         for(int i =0 ; i < folderNameArray.length ; i++){
-            System.out.println("Testing ["+folderNameArray[i]+"]");
-            arrlist.add( getFolderNameTEST(folderNameArray[i])); 
-
-            
-         }
-
-         // Convert the Arraylist to array 
-         String[] arr = new String[]{};
-         arr = arrlist.toArray(arr); 
-
-      
-      for(int i =0 ; i < arr.length ; i++){
-         if(arr[i].equals(folderNameArray[i])){
-
-         }  else {
-            System.out.println("unit test failed");
-            break;
-         }
-
-         
-      }
-
-
-      
-   }
-
+  
 
 
    /**
