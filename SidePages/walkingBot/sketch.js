@@ -162,6 +162,7 @@ function setup() {
 
 }
 
+
 function draw() {
   background(255);
   /* we will need to recalculate each position for each frame
@@ -178,7 +179,73 @@ function draw() {
   //---------------------------------
 
   //draw the bot
-  drawBot();
+  // drawBot();
+    /**
+   *
+   *
+   */
+  // function drawBot() {
+    var s1, s2, s3, s4;
+    strokeWeight(5);
+    stroke(64);
+    fill(120);
+
+    //body
+    square(pos.x, pos.y, 2 * rad);
+
+    //legs
+    fill(0);
+
+    //fLL
+    strokeWeight(5);
+    stroke(64);
+    line(fLS.x, fLS.y, fLL.x, fLL.y);
+
+    strokeWeight(0);
+    stroke(0);
+    s1 = `${fLL.x},${fLL.y}`;
+    text(s1, fLL.x, fLL.y);
+
+    //fRL
+    strokeWeight(5);
+    stroke(64);
+    line(fRS.x, fRS.y, fRL.x, fRL.y);
+
+    strokeWeight(0);
+    stroke(0);
+    s2 = `${fRL.x},${fRL.y}`;
+    text(s2, fRL.x, fRL.y);
+
+    //bLL
+    strokeWeight(5);
+    stroke(64);
+    line(bLS.x, bLS.y, bLL.x, bLL.y);
+
+    strokeWeight(0);
+    stroke(0);
+    s3 = `${bLL.x},${bLL.y}`;
+    text(s3, bLL.x, bLL.y);
+
+    //bRL
+    strokeWeight(5);
+    stroke(64);
+    line(bRS.x, bRS.y, bRL.x, bRL.y);
+
+    strokeWeight(0);
+    stroke(0);
+    s4 = `${bRL.x},${bRL.y}`;
+    text(s4, bRL.x, bRL.y);
+
+    //shoulders get drawn OVERTOP of legs
+    fill(120);
+    circle(fLS.x, fLS.y, rad / 2);
+    circle(fRS.x, fRS.y, rad / 2);
+    circle(bLS.x, bLS.y, rad / 2);
+    circle(bRS.x, bRS.y, rad / 2);
+
+
+  // }
+
 
   //pos.y--;
 
@@ -398,68 +465,3 @@ function drawCoordinateAxis() {
   pop();
 }
 
-/**
- *
- *
- */
-function drawBot() {
-  var s1, s2, s3, s4;
-  strokeWeight(5);
-  stroke(64);
-  fill(120);
-
-  //body
-  square(pos.x, pos.y, 2 * rad);
-
-  //legs
-  fill(0);
-
-  //fLL
-  strokeWeight(5);
-  stroke(64);
-  line(fLS.x, fLS.y, fLL.x, fLL.y);
-
-  strokeWeight(0);
-  stroke(0);
-  s1 = `${fLL.x},${fLL.y}`;
-  text(s1, fLL.x, fLL.y);
-
-  //fRL
-  strokeWeight(5);
-  stroke(64);
-  line(fRS.x, fRS.y, fRL.x, fRL.y);
-
-  strokeWeight(0);
-  stroke(0);
-  s2 = `${fRL.x},${fRL.y}`;
-  text(s2, fRL.x, fRL.y);
-
-  //bLL
-  strokeWeight(5);
-  stroke(64);
-  line(bLS.x, bLS.y, bLL.x, bLL.y);
-
-  strokeWeight(0);
-  stroke(0);
-  s3 = `${bLL.x},${bLL.y}`;
-  text(s3, bLL.x, bLL.y);
-
-  //bRL
-  strokeWeight(5);
-  stroke(64);
-  line(bRS.x, bRS.y, bRL.x, bRL.y);
-
-  strokeWeight(0);
-  stroke(0);
-  s4 = `${bRL.x},${bRL.y}`;
-  text(s4, bRL.x, bRL.y);
-
-  //shoulders get drawn OVERTOP of legs
-  fill(120);
-  circle(fLS.x, fLS.y, rad / 2);
-  circle(fRS.x, fRS.y, rad / 2);
-  circle(bLS.x, bLS.y, rad / 2);
-  circle(bRS.x, bRS.y, rad / 2);
-
-
-}
