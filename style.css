@@ -315,6 +315,7 @@ div.cb.tb
 
 /* unvisited link */
 a:link {
+  color: rgb(0, 255, 55);
   
 }
 
@@ -325,10 +326,10 @@ a:visited {
 
 /* mouse over link */
 a:hover {
-  
+  color: cyan;
 }
 
 /* selected link */
 a:active {
-  color: cyan;
+  
 }
