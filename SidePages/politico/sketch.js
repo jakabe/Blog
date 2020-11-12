@@ -8,6 +8,10 @@ let nott;
 
 let ex;
 
+let xGrid = true;
+let yGrid = true;
+let zGrid = true;
+
 function setup() {
 
 
@@ -53,14 +57,7 @@ function draw() {
   //get easycam stuff
   var state = easycam.getState();
 
-
-
-
-
-  positionString = "Camera position: <br>x = " + easycam.getPosition()[0] + " <br>y = " + easycam.getPosition()[1] + " <br>z = " + easycam.getPosition()[2] + " <br>";
-
-  document.getElementById("XYZ").innerHTML = positionString;
-
+  //draw the data points
   fill(64);
   push();
   translate(nott);
@@ -75,6 +72,70 @@ function draw() {
 
 
   line(nott.x, nott.y, nott.z, ex.x, ex.y, ex.z);
+
+  
+  //draw the axis
+  fill(255, 1, 1, trans);//x = red
+  rect(0, 0, 500, 500);
+
+  if(xGrid){
+    //now draw the lines
+    stroke(128,0,0);
+    for(let i = 0; i < 500/10 ; i++){
+      line(i*10-250,0-250,i*10-250,250);
+      line(0-250,i*10-250,250,i*10-250);
+    }
+    //
+    stroke(0);
+  }
+  
+
+  //y = green
+  push();
+  rotateX(PI / 2);
+  fill(0, 255, 0, trans);
+  rect(0, 0, 500, 500);
+  //now the lines
+  if(yGrid){
+    stroke(0,255,0);
+    strokeWeight(1);
+    for(let i = 0; i < 500/10 ; i++){
+      line(i*10-250,0-250,i*10-250,250);
+      line(0-250,i*10-250,250,i*10-250);
+    }
+  }
+  
+  pop();
+  //
+  stroke(0);
+
+  //z = blue
+  push();
+  rotateY(PI / 2);
+  fill(0, 0, 255, trans);
+  rect(0, 0, 500, 500);
+  //now the lines
+  if(zGrid){
+    stroke(0,0,255);
+    strokeWeight(1);
+    for(let i = 0; i < 500/10 ; i++){
+      line(i*10-250,0-250,i*10-250,250);
+      line(0-250,i*10-250,250,i*10-250);
+    }
+  }
+  
+  pop();
+  //
+  stroke(0);
+  
+
+
+
+  positionString = "Camera position: <br>x = " + easycam.getPosition()[0] + " <br>y = " + easycam.getPosition()[1] + " <br>z = " + easycam.getPosition()[2] + " <br>";
+
+  document.getElementById("XYZ").innerHTML = positionString;
+
+  
 
   strokeWeight(2);
 
@@ -101,20 +162,7 @@ function draw() {
   //reset stroke
   stroke(0, 0, 0);
 
-  fill(255, 0, 0, trans);
-  rect(0, 0, 500, 500);
-
-  push();
-  rotateX(PI / 2);
-  fill(0, 255, 0, trans);
-  rect(0, 0, 500, 500);
-  pop();
-
-  push();
-  rotateY(PI / 2);
-  fill(0, 0, 255, trans);
-  rect(0, 0, 500, 500);
-  pop();
+  
 
   //   beginShape();
   //   vertex(-50, -50,0);
@@ -126,4 +174,22 @@ function draw() {
 
 
 
+}
+
+function xGridToggle(){
+  xGrid = !xGrid;
+}
+
+function yGridToggle(){
+  yGrid = !yGrid;
+}
+
+function zGridToggle(){
+  zGrid = !zGrid;
+}
+
+function gridToggle(){
+  xGridToggle();
+  yGridToggle();
+  zGridToggle();
 }

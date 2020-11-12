@@ -10,17 +10,123 @@
 </head>
 
 <body>
-  <div id="sketch-holder"></div>
+
+  <style>
+    .item1 { 
+        grid-area: banner;
+        /*background-color: blueviolet; */
+        
+    }
+    .item2 { grid-area: menu1; }
+    .item3 { grid-area: menu2; }
+    .item4 { grid-area: main; }
+    .item5 { grid-area: right; }
+    .item6 { grid-area: footer; }
+    
+    
+    .grid-container {
+      display: grid;
+      grid-template-areas:
+        'banner     banner      banner      banner      banner      banner'
+        '.          main        main        main        main        menu1'
+        '.          main        main        main        main        menu2'
+        '.          main        main        main        main        right'
+        '.          main        main        main        main        right'
+        '.          main        main        main        main        right'
+        '.          main        main        main        main        right'
+        '.          main        main        main        main        right'
+        '.          main        main        main        main        right'
+        '.          main        main        main        main        right'
+        '.          main        main        main        main        right'
+        'footer     footer      footer      footer      footer      footer';
+      
+      background-color: #2a2a35; /* Night Sky */
+      padding: 0px;
+    }
+    
+    .grid-container > div {
+        background-color: #2a2a35; /* Night Sky */
+    }
+    .grid-container > div.item1 {
+        /*
+        banner
+        */
+        height: 10vh;
+        /* background-color: rgb(72,3,85); */
+        background-color: #2b5895;
+        color:white;
+        font-family: 'Titillium Web', sans-serif;
+        text-align: left;
+        text-indent: 2vw;
+        line-height: 6vh;
+        font-size: 9vh;
+        margin-bottom: 10px;;
+        padding: 1%;
+    }
+    .grid-container > div.item2 {
+        /*
+        Menu1
+        */
+        max-width: 180px;
+        max-height: 600px;;
+        height: fit-content;
+        width:fit-content;
+        margin:1%;
+        padding: 5%;
+    }
+    .grid-container > div.item3 {
+        /*
+        Menu2
+        */
+        max-width: 180px;
+        width:fit-content;
+        margin:1%;
+        padding: 5%;
+    }
+
+    .grid-container > div.item4 {
+        /*
+        MAIN
+        */
+        
+        width:fit-content;
+        
+        margin-left:4%;
+        padding-left: 5%;
+    }
+</style>
+
+<div class="grid-container">
+  
+  <div class="item1">plot</div>
+
+  <div class="item2">Menu 1
+    <p></p>
+    <Button id="gridLinesButton" onclick="gridToggle()">Grid Lines</Button>
+    <Button onclick="xGridToggle()">X</Button>
+    <Button onclick="yGridToggle()">Y</Button>
+    <Button onclick="zGridToggle()">Z</Button>
+    <p></p>
+    <Button id="shadowCastButton">Shadow Cast</Button>
+
+  </div>
+
+  <div class="item3">Menu 2
+
+
+  </div>
+
+  <div clas="item4">
+    <div id="sketch-holder"></div>
+  </div>
+
+</div>
+  
 
   <div id="information" style="background: #677075; color: black">
     <div id="XYZ">
       <!-- XYZ info goes here from script-->
     </div>
-    <br>
-    <p>
-      one two three test...
-    </p>
-    <br>
     
     <div class="slidecontainer" id="slider-x">
       <div id="slider-x-value">_</div>
