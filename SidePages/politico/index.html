@@ -1,0 +1,75 @@
+<!DOCTYPE html><html lang="en"><head>
+  <script src="p5.js"></script>
+  <script src="p5.sound.min.js"></script>
+
+
+  <script src="p5.easycam.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <meta charset="utf-8">
+
+</head>
+
+<body>
+  <div id="sketch-holder"></div>
+
+  <div id="information" style="background: #677075; color: black">
+    <div id="XYZ">
+      <!-- XYZ info goes here from script-->
+    </div>
+    <br>
+    <p>
+      one two three test...
+    </p>
+    <br>
+    
+    <div class="slidecontainer" id="slider-x">
+      <div id="slider-x-value">_</div>
+      <input type="range" min="-250" max="250" value="50" class="slider" id="myRange-x">
+      
+    </div>
+    
+    <div class="slidecontainer" id="slider-y">
+      <div id="slider-y-value">_</div>
+      <input type="range" min="-250" max="250" value="50" class="slider" id="myRange-y">
+      
+    </div>
+    
+    <div class="slidecontainer" id="slider-z">
+      <div id="slider-z-value">_</div>
+      <input type="range" min="-250" max="250" value="50" class="slider" id="myRange-z">
+      <script>
+        
+        var slideX = document.getElementById("myRange-x");
+        var slideY = document.getElementById("myRange-y");
+        var slideZ = document.getElementById("myRange-z");
+        var x = document.getElementById("slider-x-value");
+        var y = document.getElementById("slider-y-value");
+        var z = document.getElementById("slider-z-value");
+        x.innerHTML = slideX.value;
+        y.innerHTML = slideX.value;
+        z.innerHTML = slideX.value;
+
+        slideX.oninput = function() {
+            x.innerHTML = this.value;
+        }
+
+        slideY.oninput = function() {
+            y.innerHTML = this.value;
+        }
+
+        slideZ.oninput = function() {
+            z.innerHTML = this.value;
+        }
+
+      </script>
+    </div>
+   
+
+  </div>
+
+
+
+  <script src="sketch.js"></script>
+
+
+</body></html>
