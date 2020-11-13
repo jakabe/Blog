@@ -51,15 +51,15 @@
         /*
         banner
         */
-        height: 10vh;
+        height: 5vh;
         /* background-color: rgb(72,3,85); */
         background-color: #2b5895;
         color:white;
         font-family: 'Titillium Web', sans-serif;
         text-align: left;
         text-indent: 2vw;
-        line-height: 6vh;
-        font-size: 9vh;
+        line-height: 5vh;
+        font-size: 5vh;
         margin-bottom: 10px;;
         padding: 1%;
     }
@@ -107,7 +107,22 @@
     <Button onclick="yGridToggle()">Y</Button>
     <Button onclick="zGridToggle()">Z</Button>
     <p></p>
-    <Button id="shadowCastButton">Shadow Cast</Button>
+    <Button id="pitch"  style="display:inline;" >Pitch</Button>
+    <input type="number" id="pitch-input" min="1" max="10" value="3" style="display:inline; width: 50px;" onclick="setPitch()">
+    <p></p>
+    <Button id="shadowCastButton" onclick="shadowToggle()">Shadow Cast</Button>
+    <p></p>
+    <Button onclick="setXCol()">x-color</Button>
+    <input type="text" id="xCol-input"  style="display:inline; width: 50px;" onclick="setPitch()">
+    <p></p>
+    <p></p>
+    <Button onclick="setYCol()">y-color</Button>
+    <input type="text" id="yCol-input" style="display:inline; width: 50px;" onclick="setPitch()">
+    <p></p>
+    <p></p>
+    <Button onclick="setZCol()">z-color</Button>
+    <input type="text" id="zCol-input"  style="display:inline; width: 50px;" onclick="setPitch()">
+    <p></p>
 
   </div>
 
