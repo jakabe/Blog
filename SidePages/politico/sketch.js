@@ -20,18 +20,15 @@ let zCol;
 let pitch = 3;
 
 
-let fontBoi;
-function preload() {
-  fontBoi = loadFont('Data/Literal.otf');
-}
+let xAxisLabel = "x axis";
+let yAxisLabel = "y axis";
+let zAxisLabel = "z axis";
 
 
 
 function setup() {
   //set up text
-  textFont(fontBoi);
-  textSize(width / 3);
-  textAlign(CENTER, CENTER);
+ 
 
   //
   xCol = createVector(255,0,0);
@@ -115,6 +112,7 @@ function draw() {
   //draw the axis
   fill(xCol.x, xCol.y, xCol.z, trans);//x = red
   rect(0, 0, 500, 500);
+  
 
   if(xGrid){
     //now draw the lines
@@ -130,6 +128,29 @@ function draw() {
     
   }
 
+
+  //labels!
+
+  push();
+  translate(300,0,0);
+  fill(0);
+  stroke(0);
+  drawString3D(xAxisLabel,1);
+  pop();
+
+  push();
+  translate(0,300,0);
+  fill(0);
+  stroke(0);
+  drawString3D(yAxisLabel,1);
+  pop();
+
+  push();
+  translate(0,0,300);
+  fill(0);
+  stroke(0);
+  drawString3D(zAxisLabel,1);
+  pop();
   
   //
   stroke(0);
@@ -139,6 +160,9 @@ function draw() {
   rotateX(PI / 2);
   fill(yCol.x,yCol.y,yCol.z, trans);
   rect(0, 0, 500, 500);
+
+  //drawString3D("y axis",1);
+
   //now the lines
   if(yGrid){
     stroke(yCol.x,yCol.y,yCol.z);
@@ -158,6 +182,7 @@ function draw() {
   rotateY(PI / 2);
   fill(zCol.x,zCol.y,zCol.z, trans);
   rect(0, 0, 500, 500);
+  //drawString3D("z axis",1);
   //now the lines
   if(zGrid){
     stroke(zCol.x,zCol.y,zCol.z);
@@ -191,6 +216,7 @@ function draw() {
   stroke(255, 0, 0);
   line(nott.x, nott.y, nott.z, ex.x, 0, 0);
 
+  
 
   //==============================
   //green
@@ -211,6 +237,7 @@ function draw() {
 
 
 
+  
 
 
 }
@@ -261,4 +288,16 @@ function setZCol(){
   zCol.x = red(tempC);
   zCol.y = green(tempC);
   zCol.z = blue(tempC);
+}
+
+function setXLabel(){
+  xAxisLabel =  document.getElementById("xAx-input").value;
+}
+
+function setYLabel(){
+  yAxisLabel =  document.getElementById("yAx-inputt").value;
+}
+
+function setZLabel(){
+  zAxisLabel =  document.getElementById("zAx-input").value;
 }

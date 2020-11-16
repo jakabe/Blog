@@ -4,6 +4,7 @@
 
 
   <script src="p5.easycam.js"></script>
+  <script src="font3D.js"></script>
   <link rel="stylesheet" type="text/css" href="style.css">
   <meta charset="utf-8">
 
@@ -113,15 +114,23 @@
     <Button id="shadowCastButton" onclick="shadowToggle()">Shadow Cast</Button>
     <p></p>
     <Button onclick="setXCol()">x-color</Button>
-    <input type="text" id="xCol-input"  style="display:inline; width: 50px;" onclick="setPitch()">
-    <p></p>
+    <input type="text" id="xCol-input" placeholder="red" style="display:inline; width: 50px;" >
     <p></p>
     <Button onclick="setYCol()">y-color</Button>
-    <input type="text" id="yCol-input" style="display:inline; width: 50px;" onclick="setPitch()">
-    <p></p>
+    <input type="text" id="yCol-input" placeholder="green" style="display:inline; width: 50px;" >
     <p></p>
     <Button onclick="setZCol()">z-color</Button>
-    <input type="text" id="zCol-input"  style="display:inline; width: 50px;" onclick="setPitch()">
+    <input type="text" id="zCol-input"  placeholder="blue" style="display:inline; width: 50px;" >
+    <p></p>
+    <!-- / -->
+    <Button onclick="setXLabel()">x axis label</Button>
+    <input type="text" id="xAx-input" placeholder="x axis" style="display:inline; width: 50px;" >
+    <p></p>
+    <Button onclick="setYLabel()">y axis label</Button>
+    <input type="text" id="yAx-input" placeholder="y axis" style="display:inline; width: 50px;" >
+    <p></p>
+    <Button onclick="setZLabel()">z axis label</Button>
+    <input type="text" id="zAx-input"  placeholder="z axis" style="display:inline; width: 50px;" >
     <p></p>
 
   </div>
