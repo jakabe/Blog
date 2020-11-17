@@ -24,7 +24,9 @@ let xAxisLabel = "x axis";
 let yAxisLabel = "y axis";
 let zAxisLabel = "z axis";
 
-
+let xyPlaneLabel = "xy plane";
+let yzPlaneLabel = "yz plane";
+let xzPlaneLabel = "xz plane";
 
 function setup() {
   //set up text
@@ -46,7 +48,9 @@ function setup() {
   //console.log(Dw.EasyCam.INFO);
 
   easycam = new Dw.EasyCam(this._renderer, {
-    distance: 300
+    distance: 661.6729723773251, 
+    center:[169.98921204946697, 121.1815578167203, 85.99056409122947],
+    rotation:[0.8307845477006394, 0.40010155692603144, -0.20181231705386912, 0.33013265232715594]
   });
 
   canvas.parent('sketch-holder');
@@ -79,6 +83,7 @@ function draw() {
 
   //get easycam stuff
   var state = easycam.getState();
+  
 
   //draw the data points
   fill(64);
@@ -130,14 +135,16 @@ function draw() {
 
 
   //labels!
-
+  //x
   push();
   translate(300,0,0);
+  
   fill(0);
   stroke(0);
   drawString3D(xAxisLabel,1);
   pop();
 
+  //y
   push();
   translate(0,300,0);
   fill(0);
@@ -145,11 +152,49 @@ function draw() {
   drawString3D(yAxisLabel,1);
   pop();
 
+  //z
   push();
   translate(0,0,300);
+  rotateY(PI / 2);
+  rotateX(-PI / 4);
   fill(0);
   stroke(0);
   drawString3D(zAxisLabel,1);
+  pop();
+
+  //plane labels
+  //xy
+  push();
+  translate(300,300,0);
+  rotateZ(PI / 4);
+  fill(0);
+  stroke(0);
+  drawString3D(xyPlaneLabel,1);
+  pop();
+
+  //yz
+  push();
+  
+  translate(0,300,300);
+  
+  //rotateX(PI / 2);
+  rotateY(PI / 2);
+  fill(0);
+  stroke(0);
+  drawString3D(yzPlaneLabel,1);
+  pop();
+
+  //xz
+  push();
+  translate(300,0,300);
+
+  rotateY(PI / 2);
+  rotateX(-PI / 2);
+  //rotateX(PI / 4);
+
+  fill(0);
+  stroke(0);
+  drawString3D(xzPlaneLabel,1);
   pop();
   
   //
@@ -300,4 +345,16 @@ function setYLabel(){
 
 function setZLabel(){
   zAxisLabel =  document.getElementById("zAx-input").value;
+}
+
+function setXYPlaneLabel(){
+  xyPlaneLabel =  document.getElementById("xy-Plane-input").value;
+}
+
+function setYZPlaneLabel(){
+  yzPlaneLabel =  document.getElementById("yz-Plane-input").value;
+}
+
+function setXZPlaneLabel(){
+  xzPlaneLabel =  document.getElementById("xz-Plane-input").value;
 }
