@@ -1,0 +1,118 @@
+<!DOCTYPE html><html lang="en">
+<head>
+    <title >"Inversekinematics"</title>
+    <script language="javascript" type="text/javascript" src="../libraries/p5.js"></script>
+    <script language="javascript" type="text/javascript" src="../libraries/p5.dom.js"></script>
+    <script language="javascript" type="text/javascript" src="../libraries/p5.sound.js"></script>
+     
+      <link rel="stylesheet" type="text/css" href="style.css">
+      <meta charset="utf-8">
+</head>
+    
+<body>
+
+    <style>
+        .item1 { 
+            grid-area: banner;
+            /*background-color: blueviolet; */
+            
+        }
+        .item2 { grid-area: menu1; }
+        .item3 { grid-area: menu2; }
+        .item4 { grid-area: main; }
+        .item5 { grid-area: right; }
+        .item6 { grid-area: footer; }
+        
+        
+        .grid-container {
+          display: grid;
+          grid-template-areas:
+            'banner     banner      banner      banner      banner      banner'
+            '.          main        main        main        main        menu1'
+            '.          main        main        main        main        menu2'
+            '.          main        main        main        main        right'
+            '.          main        main        main        main        right'
+            '.          main        main        main        main        right'
+            '.          main        main        main        main        right'
+            '.          main        main        main        main        right'
+            '.          main        main        main        main        right'
+            '.          main        main        main        main        right'
+            '.          main        main        main        main        right'
+            'footer     footer      footer      footer      footer      footer';
+          
+          background-color: #2a2a35; /* Night Sky */
+          padding: 0px;
+        }
+        
+        .grid-container > div {
+            background-color: #2a2a35; /* Night Sky */
+        }
+        .grid-container > div.item1 {
+            /*
+            banner
+            */
+            height: 5vh;
+            /* background-color: rgb(72,3,85); */
+            background-color: #2b5895;
+            color:white;
+            font-family: 'Titillium Web', sans-serif;
+            text-align: left;
+            text-indent: 2vw;
+            line-height: 5vh;
+            font-size: 5vh;
+            margin-bottom: 10px;;
+            padding: 1%;
+        }
+        .grid-container > div.item2 {
+            /*
+            Menu1
+            */
+            max-width: 180px;
+            max-height: 600px;;
+            height: fit-content;
+            width:fit-content;
+            margin:1%;
+            padding: 5%;
+        }
+        .grid-container > div.item3 {
+            /*
+            Menu2
+            */
+            max-width: 180px;
+            width:fit-content;
+            margin:1%;
+            padding: 5%;
+        }
+    
+        .grid-container > div.item4 {
+            /*
+            MAIN
+            */
+            
+            width:fit-content;
+            
+            margin-left:4%;
+            padding-left: 5%;
+        }
+    </style>
+
+    <div class="grid-container">
+        <div class="item1">Inverse Kinematics - 2 </div>
+        <div class="item2">
+        
+        </div>
+        <div class="item3">
+    
+    
+        </div>
+        <div clas="item4">
+        <div id="sketch-holder"></div>
+        </div>
+  
+    </div><!-- end of grid container-->
+
+    <script src="sketch.js"></script>
+    <script src="segment.js"></script>
+</body>
+
+</html>
