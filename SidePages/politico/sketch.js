@@ -1,13 +1,15 @@
 var easycam;
 
+let dataPointRadius = 15; 
+
 let shadowCast=true;
 let positionString = "";
 
 var trans = 128; // 50%
 
-let nott;
-
-let ex;
+let nott; //origin
+let ex;//example point
+let dataPoints;
 
 let xGrid = true;
 let yGrid = true;
@@ -19,18 +21,26 @@ let zCol;
 
 let pitch = 3;
 
+let showAxisLabels = false;
 
 let xAxisLabel = "x axis";
 let yAxisLabel = "y axis";
 let zAxisLabel = "z axis";
 
+let showPlaneLabels = false;
+
 let xyPlaneLabel = "xy plane";
 let yzPlaneLabel = "yz plane";
 let xzPlaneLabel = "xz plane";
 
+//camera data
+let oDistance = 661;
+let oCameraCenter = [169.98921204946697, 121.1815578167203, 85.99056409122947];
+let oCameraRotation = [0.8307845477006394, 0.40010155692603144, -0.20181231705386912, 0.33013265232715594];
+
 function setup() {
   //set up text
- 
+  dataPoints =[];
 
   //
   xCol = createVector(255,0,0);
@@ -40,6 +50,7 @@ function setup() {
   nott = createVector(0, 0, 0);
 
   ex = createVector(random(-250, 250), random(-250, 250), random(-250, 250));
+  dataPoints.push(ex);
 
   var canvas = createCanvas(600, 600, WEBGL);
   //createEasyCam();
@@ -48,9 +59,9 @@ function setup() {
   //console.log(Dw.EasyCam.INFO);
 
   easycam = new Dw.EasyCam(this._renderer, {
-    distance: 661.6729723773251, 
-    center:[169.98921204946697, 121.1815578167203, 85.99056409122947],
-    rotation:[0.8307845477006394, 0.40010155692603144, -0.20181231705386912, 0.33013265232715594]
+    distance: oDistance, 
+    center: oCameraCenter,
+    rotation: oCameraRotation
   });
 
   canvas.parent('sketch-holder');
@@ -58,26 +69,30 @@ function setup() {
   rectMode(CENTER);
 
 
-  let xt = document.getElementById("slider-x-value");
-  let yt = document.getElementById("slider-y-value");
-  let zt = document.getElementById("slider-z-value");
-  xt.innerHTML = ex.x;
-  yt.innerHTML = ex.y;
-  zt.innerHTML = ex.z;
+  
 
 }
 
+function resetCamera(){
+  console.log("reseting view");
+  //easycam.setCenter(oCameraCenter, 1);
+  easycam.setRotation(oCameraRotation,500);
+  easycam.setDistance(oDistance, 500);
+  //console.log(easycam.getState());
+  //easycam.update();
 
+  // easycam.distance = oDistance;
+  // easycam.center = oCameraCenter;
+  // easycam.rotation = oCameraRotation;
+}
 
 
 function draw() {
-  //get the html stuff
-  ex.x = parseInt(document.getElementById("myRange-x").value);
-  ex.y = parseInt(document.getElementById("myRange-y").value);
-  ex.z = parseInt(document.getElementById("myRange-z").value);
+  
+  
   //
   positionString = "Camera position: <br>x = " + easycam.getPosition()[0] + " <br>y = " + easycam.getPosition()[1] + " <br>z = " + easycam.getPosition()[2] + " <br>";
-  document.getElementById("XYZ").innerHTML = positionString;
+  
   //
   background(255);
 
@@ -89,14 +104,27 @@ function draw() {
   fill(64);
   push();
   translate(nott);
-  box(10);
+  strokeWeight(dataPointRadius);
+  point(0,0);
   pop();
 
-  fill(64);
-  push();
-  translate(ex);
-  box(10);
-  pop();
+  // fill(64);
+  // push();
+  // translate(ex);
+  // strokeWeight(dataPointRadius);
+  // point(0,0);
+  // pop();
+
+  for(let i = 0 ; i< dataPoints.length; i++){
+    fill(64);
+    push();
+    translate(dataPoints[i]);
+    strokeWeight(dataPointRadius);
+    point(0,0);
+    pop();
+  }
+  //reset stroke weight
+  strokeWeight(1);
 
   //cast some shadows
   if(shadowCast){
@@ -133,69 +161,73 @@ function draw() {
     
   }
 
+  if(showAxisLabels){
+    //labels!
+    //x
+    push();
+    translate(300,0,0);
+    
+    fill(0);
+    stroke(0);
+    drawString3D(xAxisLabel,1);
+    pop();
 
-  //labels!
-  //x
-  push();
-  translate(300,0,0);
+    //y
+    push();
+    translate(0,300,0);
+    fill(0);
+    stroke(0);
+    drawString3D(yAxisLabel,1);
+    pop();
+
+    //z
+    push();
+    translate(0,0,300);
+    rotateY(PI / 2);
+    rotateX(-PI / 4);
+    fill(0);
+    stroke(0);
+    drawString3D(zAxisLabel,1);
+    pop();
+  }
+
+  if(showPlaneLabels){
+    //plane labels
+    //xy
+    push();
+    translate(300,300,0);
+    rotateZ(PI / 4);
+    fill(0);
+    stroke(0);
+    drawString3D(xyPlaneLabel,1);
+    pop();
+
+    //yz
+    push();
+    
+    translate(0,300,300);
+    
+    //rotateX(PI / 2);
+    rotateY(PI / 2);
+    fill(0);
+    stroke(0);
+    drawString3D(yzPlaneLabel,1);
+    pop();
+
+    //xz
+    push();
+    translate(300,0,300);
+
+    rotateY(PI / 2);
+    rotateX(-PI / 2);
+    //rotateX(PI / 4);
+
+    fill(0);
+    stroke(0);
+    drawString3D(xzPlaneLabel,1);
+    pop();
+  }
   
-  fill(0);
-  stroke(0);
-  drawString3D(xAxisLabel,1);
-  pop();
-
-  //y
-  push();
-  translate(0,300,0);
-  fill(0);
-  stroke(0);
-  drawString3D(yAxisLabel,1);
-  pop();
-
-  //z
-  push();
-  translate(0,0,300);
-  rotateY(PI / 2);
-  rotateX(-PI / 4);
-  fill(0);
-  stroke(0);
-  drawString3D(zAxisLabel,1);
-  pop();
-
-  //plane labels
-  //xy
-  push();
-  translate(300,300,0);
-  rotateZ(PI / 4);
-  fill(0);
-  stroke(0);
-  drawString3D(xyPlaneLabel,1);
-  pop();
-
-  //yz
-  push();
-  
-  translate(0,300,300);
-  
-  //rotateX(PI / 2);
-  rotateY(PI / 2);
-  fill(0);
-  stroke(0);
-  drawString3D(yzPlaneLabel,1);
-  pop();
-
-  //xz
-  push();
-  translate(300,0,300);
-
-  rotateY(PI / 2);
-  rotateX(-PI / 2);
-  //rotateX(PI / 4);
-
-  fill(0);
-  stroke(0);
-  drawString3D(xzPlaneLabel,1);
-  pop();
   
   //
   stroke(0);
@@ -340,7 +372,7 @@ function setXLabel(){
 }
 
 function setYLabel(){
-  yAxisLabel =  document.getElementById("yAx-inputt").value;
+  yAxisLabel =  document.getElementById("yAx-input").value;
 }
 
 function setZLabel(){
@@ -358,3 +390,21 @@ function setYZPlaneLabel(){
 function setXZPlaneLabel(){
   xzPlaneLabel =  document.getElementById("xz-Plane-input").value;
 }
+
+function addDataPoint(){
+  
+  let xc = document.getElementById("dataPoint-x-input").value;
+  let yc = document.getElementById("dataPoint-y-input").value;
+  let zc = document.getElementById("dataPoint-z-input").value;
+  let newPoint = createVector(xc,yc,zc);
+  dataPoints.push(newPoint);
+  console.log("adding point ["+xc+", "+yc+", "+zc+"]");
+
+  for(let i = 0 ; i < dataPoints.length ; i++){
+    console.log(dataPoints[i]);
+  }
+}
+
+function axLaToggle(){ showAxisLabels = !showAxisLabels;}
+function plLaToggle(){ showPlaneLabels= !showPlaneLabels;}
+

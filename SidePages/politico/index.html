@@ -20,31 +20,37 @@
         /*background-color: blueviolet; */
         
     }
-    .item2 { grid-area: menu1; }
-    .item3 { grid-area: menu2; }
-    .item4 { grid-area: main; }
-    .item5 { grid-area: right; }
+    .item2 { grid-area: menu1;  }
+    .item3 { grid-area: menu2;  }
+    .item4 { grid-area: main;   }
+    .item5 { grid-area: right;  }
     .item6 { grid-area: footer; }
-    
+    .item7 { grid-area: menu3;  }
+    .item8 { grid-area: menu4;  }
+    .item9 { grid-area: menu5;  }
+    .item10 {grid-area: blank;  }
     
     .grid-container {
       display: grid;
       grid-template-areas:
-        'banner     banner      banner      banner      banner      banner'
-        '.          main        main        main        main        menu1'
-        '.          main        main        main        main        menu2'
-        '.          main        main        main        main        right'
-        '.          main        main        main        main        right'
-        '.          main        main        main        main        right'
-        '.          main        main        main        main        right'
-        '.          main        main        main        main        right'
-        '.          main        main        main        main        right'
-        '.          main        main        main        main        right'
-        '.          main        main        main        main        right'
-        'footer     footer      footer      footer      footer      footer';
+        
+        'main       menu1   menu2'
+        'main       menu1   .'
+        'main       menu1   .'
+        'main       menu1   .'
+        'main       menu1   .'
+        'main       menu1   .'
+        'main       menu1   .'
+        'main       menu1   .'
+        'main       menu1   .'
+        'banner     banner  banner'
+        'blank      blank   blank'
+        
+        ;
       
       background-color: #2a2a35; /* Night Sky */
       padding: 0px;
+      color: #aaaaaa;
     }
     
     .grid-container > div {
@@ -74,8 +80,8 @@
         max-height: 600px;;
         height: fit-content;
         width:fit-content;
-        margin:1%;
-        padding: 5%;
+        margin:0px;;
+        padding: 0px;;
     }
     .grid-container > div.item3 {
         /*
@@ -83,8 +89,13 @@
         */
         max-width: 180px;
         width:fit-content;
-        margin:1%;
-        padding: 5%;
+        /*margin:0px;*/
+        margin-left: 10px;
+        margin-right: 0px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        
+        padding: 0px;
     }
 
     .grid-container > div.item4 {
@@ -97,6 +108,69 @@
         margin-left:4%;
         padding-left: 5%;
     }
+
+    .grid-container > div.item7 {
+        /*
+        Menu3
+        */
+        max-width: 50px;
+        width:fit-content;
+        /*margin:0px;*/
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        
+        padding: 0px;
+    }
+
+    .grid-container > div.item8 {
+        /*
+        Menu4
+        */
+        max-width: 50px;
+        width:fit-content;
+        /*margin:0px;*/
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        
+        padding: 0px;
+    }
+
+    .grid-container > div.item9 {
+        /*
+        Menu5
+        */
+        max-width: 50px;
+        width:fit-content;
+        /*margin:0px;*/
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        
+        padding: 0px;
+    }
+
+    .grid-container > div.item10 {
+        /*
+        blank
+        */
+        background-color: #2b2b36; /* Night Sky */
+        max-width: 50px;
+        width:fit-content;
+        /*margin:0px;*/
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        
+        padding: 0px;
+    }
+
+
 </style>
 
 <div class="grid-container">
@@ -104,6 +178,9 @@
   <div class="item1">plot</div>
 
   <div class="item2">Menu 1
+
+    <p></p>
+    <Button id="resetCam" onclick="resetCamera()">Reset View</Button>
     <p></p>
     <Button id="gridLinesButton" onclick="gridToggle()">Grid Lines</Button>
     <Button onclick="xGridToggle()">X</Button>
@@ -115,32 +192,43 @@
     <p></p>
     <Button id="shadowCastButton" onclick="shadowToggle()">Shadow Cast</Button>
     <p></p>
-    <Button onclick="setXCol()">x-color</Button>
-    <input type="text" id="xCol-input" placeholder="red" style="display:inline; width: 50px;" >
-    <p></p>
-    <Button onclick="setYCol()">y-color</Button>
-    <input type="text" id="yCol-input" placeholder="green" style="display:inline; width: 50px;" >
-    <p></p>
-    <Button onclick="setZCol()">z-color</Button>
-    <input type="text" id="zCol-input"  placeholder="blue" style="display:inline; width: 50px;" >
+    <div>
+      <Button onclick="setXCol()">x-color</Button>
+      <input type="text" id="xCol-input" placeholder="red" style="display:inline; width: 50px;" >
+    </div>
+    
+    <div>
+      <Button onclick="setYCol()">y-color</Button>
+      <input type="text" id="yCol-input" placeholder="green" style="display:inline; width: 50px;" >
+    </div>
+    
+    
+    <div>
+      <Button onclick="setZCol()">z-color</Button>
+      <input type="text" id="zCol-input"  placeholder="blue" style="display:inline; width: 50px;" >
+    </div>
+
+    
     <p></p>
     <!-- / -->
+    <Button onclick="axLaToggle()">Axis Labels</Button>
     <Button onclick="setXLabel()">x axis label</Button>
     <input type="text" id="xAx-input" placeholder="x axis" style="display:inline; width: 50px;" >
-    <p></p>
+    
     <Button onclick="setYLabel()">y axis label</Button>
     <input type="text" id="yAx-input" placeholder="y axis" style="display:inline; width: 50px;" >
-    <p></p>
+    
     <Button onclick="setZLabel()">z axis label</Button>
     <input type="text" id="zAx-input"  placeholder="z axis" style="display:inline; width: 50px;" >
     <p></p>
     <!-- labels for planes -->
+    <Button onclick="plLaToggle()">Plane Labels</Button>
     <Button onclick="setXYPlaneLabel()">xy plane label</Button>
     <input type="text" id="xy-Plane-input" placeholder="xy plane" style="display:inline; width: 50px;" >
-    <p></p>
+    
     <Button onclick="setYZPlaneLabel()">yz plane label</Button>
     <input type="text" id="yz-Plane-input" placeholder="yz plane" style="display:inline; width: 50px;" >
-    <p></p>
+    
     <Button onclick="setXZPlaneLabel()">xz plane label</Button>
     <input type="text" id="xz-Plane-input"  placeholder="xz plane" style="display:inline; width: 50px;" >
     <p></p>
@@ -148,65 +236,59 @@
   </div>
 
   <div class="item3">Menu 2
+    <p></p>
+    <Button id="addDataPoint"  style="display:inline;" onclick="addDataPoint()">Add Data Point</Button>
+    <div>
+      <label for="dataPoint-x-input">x</label>
+      <input type="number" id="dataPoint-x-input"  style="display:inline-block; width: 50px;" >
+    </div>
+    
+    <div>
+      <label for="dataPoint-y-input">y</label>
+      <input type="number" id="dataPoint-y-input"  style="display:inline-block; width: 50px;" >
+    </div>
+    
+    <div>
+      <label for="dataPoint-z-input">z</label>
+      <input type="number" id="dataPoint-z-input"  style="display:inline-block; width: 50px;" >
+    </div>
+    
+    <div>
+      
+      <Button id="SelectDataPoint"   onclick="">Select Data Point</Button>
+      <input type="number" id="dataPointSelector-input"  style="display:inline-block; width: 50px;" min="0"  value="0">
+    </div>
+
+    <div>
+      Data point information (NOT COMPLETE)
+    </div>
+
+
 
 
   </div>
 
-  <div clas="item4">
+  <div clas="item4"><!-- main! -->
     <div id="sketch-holder"></div>
   </div>
 
+  
+
+  <div class="item10">blank
+
+  </div>
+
 </div>
+
+
+
+
+
   
 
   <div id="information" style="background: #677075; color: black">
-    <div id="XYZ">
-      <!-- XYZ info goes here from script-->
-    </div>
     
-    <div class="slidecontainer" id="slider-x">
-      <div id="slider-x-value">_</div>
-      <input type="range" min="-250" max="250" value="50" class="slider" id="myRange-x">
-      
-    </div>
     
-    <div class="slidecontainer" id="slider-y">
-      <div id="slider-y-value">_</div>
-      <input type="range" min="-250" max="250" value="50" class="slider" id="myRange-y">
-      
-    </div>
-    
-    <div class="slidecontainer" id="slider-z">
-      <div id="slider-z-value">_</div>
-      <input type="range" min="-250" max="250" value="50" class="slider" id="myRange-z">
-      <script>
-        
-        var slideX = document.getElementById("myRange-x");
-        var slideY = document.getElementById("myRange-y");
-        var slideZ = document.getElementById("myRange-z");
-        var x = document.getElementById("slider-x-value");
-        var y = document.getElementById("slider-y-value");
-        var z = document.getElementById("slider-z-value");
-        x.innerHTML = slideX.value;
-        y.innerHTML = slideX.value;
-        z.innerHTML = slideX.value;
-
-        slideX.oninput = function() {
-            x.innerHTML = this.value;
-        }
-
-        slideY.oninput = function() {
-            y.innerHTML = this.value;
-        }
-
-        slideZ.oninput = function() {
-            z.innerHTML = this.value;
-        }
-
-      </script>
-    </div>
-   
-
   </div>
 
 
