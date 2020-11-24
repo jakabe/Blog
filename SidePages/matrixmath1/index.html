@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+  <script language="javascript" type="text/javascript" src="../libraries/p5.js"></script>
+  <script language="javascript" type="text/javascript" src="../libraries/p5.dom.js"></script>
+  <script language="javascript" type="text/javascript" src="../libraries/p5.sound.js"></script>
+  <title>Matrix Math 1</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <meta charset="utf-8">
+
+</head>
+
+<body>
+
+  <style>
+    .item1 { 
+        grid-area: banner;
+        /*background-color: blueviolet; */
+        
+    }
+    .item2 { grid-area: menu1;  }
+    .item3 { grid-area: menu2;  }
+    .item4 { grid-area: main;   }
+    .item5 { grid-area: right;  }
+    .item6 { grid-area: footer; }
+    .item7 { grid-area: menu3;  }
+    .item8 { grid-area: menu4;  }
+    .item9 { grid-area: menu5;  }
+    .item10 {grid-area: blank;  }
+    
+    .grid-container {
+      display: grid;
+      grid-template-areas:
+        
+        'main       menu1   menu2'
+        'main       menu1   .'
+        'main       menu1   .'
+        'main       menu1   .'
+        'main       menu1   .'
+        'main       menu1   .'
+        'main       menu1   .'
+        'main       menu1   .'
+        'main       menu1   .'
+        'banner     banner  banner'
+        'blank      blank   blank'
+        
+        ;
+      
+      background-color: #2a2a35; /* Night Sky */
+      padding: 0px;
+      color: #aaaaaa;
+    }
+    
+    .grid-container > div {
+        background-color: #2a2a35; /* Night Sky */
+    }
+    .grid-container > div.item1 {
+        /*
+        banner
+        */
+        height: 5vh;
+        /* background-color: rgb(72,3,85); */
+        background-color: #2b5895;
+        color:white;
+        font-family: 'Titillium Web', sans-serif;
+        text-align: left;
+        text-indent: 2vw;
+        line-height: 5vh;
+        font-size: 5vh;
+        margin-bottom: 10px;;
+        padding: 1%;
+    }
+    .grid-container > div.item2 {
+        /*
+        Menu1
+        */
+        max-width: 180px;
+        max-height: 600px;;
+        height: fit-content;
+        width:fit-content;
+        margin:0px;;
+        padding: 0px;;
+    }
+    .grid-container > div.item3 {
+        /*
+        Menu2
+        */
+        max-width: 180px;
+        width:fit-content;
+        /*margin:0px;*/
+        margin-left: 10px;
+        margin-right: 0px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        
+        padding: 0px;
+    }
+
+    .grid-container > div.item4 {
+        /*
+        MAIN
+        */
+        
+        width:fit-content;
+        
+        margin-left:4%;
+        padding-left: 5%;
+    }
+
+    .grid-container > div.item7 {
+        /*
+        Menu3
+        */
+        max-width: 50px;
+        width:fit-content;
+        /*margin:0px;*/
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        
+        padding: 0px;
+    }
+
+    .grid-container > div.item8 {
+        /*
+        Menu4
+        */
+        max-width: 50px;
+        width:fit-content;
+        /*margin:0px;*/
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        
+        padding: 0px;
+    }
+
+    .grid-container > div.item9 {
+        /*
+        Menu5
+        */
+        max-width: 50px;
+        width:fit-content;
+        /*margin:0px;*/
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        
+        padding: 0px;
+    }
+
+    .grid-container > div.item10 {
+        /*
+        blank
+        */
+        background-color: #2b2b36; /* Night Sky */
+        max-width: 50px;
+        width:fit-content;
+        /*margin:0px;*/
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        
+        padding: 0px;
+    }
+
+
+</style>
+
+<div class="grid-container">
+  
+  <div class="item1">plot</div>
+
+  <div class="item2">Menu 1
+
+    
+
+  </div>
+
+  <div class="item3">Menu 2
+
+  </div>
+
+  <div clas="item4"><!-- main! -->
+    <div id="sketch-holder"></div>
+  </div>
+
+  
+
+  <div class="item10">blank
+
+  </div>
+
+</div>
+
+
+
+
+
+  
+
+  <div id="information" style="background: #677075; color: black">
+    
+    
+  </div>
+
+
+
+  <script src="sketch.js"></script>
+
+
+</body></html>

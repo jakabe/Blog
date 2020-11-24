@@ -1,0 +1,22 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: black;
+  color: white;
+}
+canvas {
+  display: block;
+}
+
+#sketch-holder {
+  border-style: solid; 
+  border-color: white;
+  width: fit-content;
+}
+p{
+  
+}
+Button{
+  margin: 0px;
+  padding: 0px;
+}
