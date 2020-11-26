@@ -7,6 +7,10 @@
 
   <script src="p5.easycam.js"></script>
   <script src="font3D.js"></script>
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+
+
   <link rel="stylesheet" type="text/css" href="style.css">
   <meta charset="utf-8">
 
@@ -255,15 +259,49 @@
     
     <div>
       
-      <Button id="SelectDataPoint"   onclick="">Select Data Point</Button>
-      <input type="number" id="dataPointSelector-input"  style="display:inline-block; width: 50px;" min="0"  value="0">
+      <Button id="SelectDataPoint"   onclick="selectDataPoint()">Select Data Point</Button>
+      <input type="number" id="dataPointSelector-input"  style="display:inline-block; width: 50px;" min="0" max="0" value="0">
     </div>
 
+    <div id="dpi">
+      Data point information
+    </div>
     <div>
-      Data point information (NOT COMPLETE)
+      -
     </div>
+    <div>
+      Add a custom image for a plane
+    </div>
+    <input type="file" name="file" id="plane-img">
+    <img src="" id="plane-img-tag" width="200px" />
+    
+    <div>
+      <Button id="set-xy-plane-image" onclick="loadxyImg()">xy plane</Button>
+    </div>
+    <div>
+      <Button id="set-yz-plane-image" onclick="loadyzImg()">yz plane</Button>
+    </div>
+    <div>
+      <Button id="set-xz-plane-image" onclick="loadxzImg()">xz plane</Button>
+    </div>
+    
 
-
+    <!-- <script type="text/javascript">
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                
+                reader.onload = function (e) {
+                    $('#plane-img-tag').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        $("#plane-img").change(function(){
+            readURL(this);
+        });
+    </script> -->
+    
 
 
   </div>
@@ -274,7 +312,8 @@
 
   
 
-  <div class="item10">blank
+  <div class="item10">
+    item10
 
   </div>
 

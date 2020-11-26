@@ -38,6 +38,14 @@ let oDistance = 661;
 let oCameraCenter = [169.98921204946697, 121.1815578167203, 85.99056409122947];
 let oCameraRotation = [0.8307845477006394, 0.40010155692603144, -0.20181231705386912, 0.33013265232715594];
 
+//image information
+let xyImg;
+let yzImg;
+let xzImg;
+
+//highlighted point
+let highLightedPoint;
+
 function setup() {
   //set up text
   dataPoints =[];
@@ -119,32 +127,70 @@ function draw() {
     fill(64);
     push();
     translate(dataPoints[i]);
-    strokeWeight(dataPointRadius);
-    point(0,0);
+    if(dataPoints[i]!=highLightedPoint){
+      strokeWeight(dataPointRadius);
+      point(0,0);
+    } else {
+      stroke(255,0,0);
+      let tx;
+      let ty;
+      strokeWeight(4);
+      for(let j = 0 ; j < 8 ; j++){
+        tx = dataPointRadius*cos(frameCount/30+j*PI/4);
+        ty = dataPointRadius*sin(frameCount/30+j*PI/4);
+        point(tx,ty);
+      }
+      
+      
+      
+      stroke(255);
+      strokeWeight(dataPointRadius+5);
+      point(0,0);
+      stroke(0);
+      strokeWeight(dataPointRadius);
+      point(0,0);
+      
+      
+      
+
+    }
+
+    
     pop();
   }
+      
+      //cast some shadows
+      if(shadowCast && highLightedPoint != null){
+        stroke(xCol.x,xCol.y,xCol.z);//from red to point should be blue or green
+        line(highLightedPoint.x,highLightedPoint.y,0, highLightedPoint.x, highLightedPoint.y, highLightedPoint.z);
+
+        stroke(yCol.x,yCol.y,yCol.z);//from green
+        line( highLightedPoint.x, 0, highLightedPoint.z, highLightedPoint.x, highLightedPoint.y, highLightedPoint.z );
+
+        stroke(zCol.x,zCol.y,zCol.z);//from blue
+        line(0, highLightedPoint.y, highLightedPoint.z, highLightedPoint.x, highLightedPoint.y, highLightedPoint.z);
+        
+        stroke(0);
+        line(0,0,0,highLightedPoint.x,highLightedPoint.y,highLightedPoint.z);
+      }
+
   //reset stroke weight
   strokeWeight(1);
 
-  //cast some shadows
-  if(shadowCast){
-    stroke(xCol.x,xCol.y,xCol.z);//from red to point should be blue or green
-    line(ex.x,ex.y,0, ex.x, ex.y, ex.z);
-
-    stroke(yCol.x,yCol.y,yCol.z);//from green
-    line( ex.x, 0, ex.z, ex.x, ex.y, ex.z );
-
-    stroke(zCol.x,zCol.y,zCol.z);//from blue
-    line(0, ex.y, ex.z, ex.x, ex.y, ex.z);
-  }
-  //
-  stroke(0);
-  line(nott.x, nott.y, nott.z, ex.x, ex.y, ex.z);
+  
+  
 
   
   //draw the axis
-  fill(xCol.x, xCol.y, xCol.z, trans);//x = red
-  rect(0, 0, 500, 500);
+  if(xyImg == null){
+    fill(xCol.x, xCol.y, xCol.z, trans);//x = red
+    rect(0, 0, 500, 500);
+  } else {
+    tint(255, trans);
+    image(xyImg,-250,-250,500,500);
+
+  }
+  
   
 
   if(xGrid){
@@ -232,11 +278,19 @@ function draw() {
   //
   stroke(0);
 
-  //y = green
+  //xz = green
+  
   push();
   rotateX(PI / 2);
-  fill(yCol.x,yCol.y,yCol.z, trans);
-  rect(0, 0, 500, 500);
+  if(xzImg ==null){
+    fill(yCol.x,yCol.y,yCol.z, trans);
+    rect(0, 0, 500, 500);
+  } else {
+    tint(255, trans);
+    image(xzImg,-250,-250,500,500);
+  }
+
+  
 
   //drawString3D("y axis",1);
 
@@ -244,7 +298,7 @@ function draw() {
   if(yGrid){
     stroke(yCol.x,yCol.y,yCol.z);
     strokeWeight(1);
-    for(let i = 0; i < pitch ; i++){
+    for(let i = 1; i < pitch ; i++){
       line(i*500/pitch-250,0-250,i*500/pitch-250,250);
       line(0-250,i*500/pitch-250,250,i*500/pitch-250);
     }
@@ -254,17 +308,23 @@ function draw() {
   //
   stroke(0);
 
-  //z = blue
+  //yz = blue
   push();
   rotateY(PI / 2);
-  fill(zCol.x,zCol.y,zCol.z, trans);
-  rect(0, 0, 500, 500);
+  if(yzImg==null){
+    fill(zCol.x,zCol.y,zCol.z, trans);
+    rect(0, 0, 500, 500);
+  } else {
+    tint(255, trans);
+    image(yzImg,-250,-250,500,500);
+  }
+  
   //drawString3D("z axis",1);
   //now the lines
   if(zGrid){
     stroke(zCol.x,zCol.y,zCol.z);
     strokeWeight(1);
-    for(let i = 0; i < pitch ; i++){
+    for(let i = 1; i < pitch ; i++){
       line(i*500/pitch-250,0-250,i*500/pitch-250,250);
       line(0-250,i*500/pitch-250,250,i*500/pitch-250);
     }
@@ -312,8 +372,8 @@ function draw() {
   //reset stroke
   stroke(0, 0, 0);
 
-
-
+  
+  
   
 
 
@@ -398,13 +458,58 @@ function addDataPoint(){
   let zc = document.getElementById("dataPoint-z-input").value;
   let newPoint = createVector(xc,yc,zc);
   dataPoints.push(newPoint);
-  console.log("adding point ["+xc+", "+yc+", "+zc+"]");
+  //console.log("adding point ["+xc+", "+yc+", "+zc+"]");
 
   for(let i = 0 ; i < dataPoints.length ; i++){
     console.log(dataPoints[i]);
   }
+  document.getElementById("dataPointSelector-input").setAttribute("max",dataPoints.length);
+  
 }
 
 function axLaToggle(){ showAxisLabels = !showAxisLabels;}
 function plLaToggle(){ showPlaneLabels= !showPlaneLabels;}
 
+function loadxyImg(){
+  let tempImg = document.getElementById("plane-img-tag").src;
+  xyImg = loadImage(tempImg);
+}
+
+function loadyzImg(){
+  let tempImg = document.getElementById("plane-img-tag").src;
+  yzImg = loadImage(tempImg);
+}
+
+function loadxzImg(){
+  let tempImg = document.getElementById("plane-img-tag").src;
+  xzImg = loadImage(tempImg);
+}
+
+//stolen from the web
+function readURL(input) {
+  if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      
+      reader.onload = function (e) {
+          $('#plane-img-tag').attr('src', e.target.result);
+      }
+      reader.readAsDataURL(input.files[0]);
+  }
+}
+$("#plane-img").change(function(){
+  readURL(this);
+});
+//selecting points and getting their info
+function selectDataPoint(){
+  
+  let n = document.getElementById("dataPointSelector-input").value;
+  let d = dataPoints[n];
+  //
+  
+  //highlighting the point
+  highLightedPoint = d;
+
+  let pData = document.getElementById("dpi");
+
+  pData.innerHTML = "<div> x= "+d.x+"</div><div>y= "+d.y+"</div><div>z= "+d.z+"</div>";
+}
